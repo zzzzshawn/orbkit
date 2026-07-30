@@ -1,0 +1,38 @@
+{
+  "name": "orba",
+  "version": "0.1.0",
+  "license": "MIT",
+  "private": true,
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "pnpm check:orbs && pnpm registry:build && next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "check:orbs": "tsx scripts/check-orbs.ts",
+    "registry:build": "tsx scripts/build-registry.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "dialkit": "^1.2.0",
+    "geist": "^1.7.0",
+    "next": "^16.0.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "shiki": "^4.0.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^22.10.1",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "eslint": "^9.16.0",
+    "eslint-config-next": "^16.0.0",
+    "tailwindcss": "^4",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

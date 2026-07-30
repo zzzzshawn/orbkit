@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 190 190" fill="none">
+  <rect width="190" height="190" rx="44" fill="url(#plate)" />
+  <ellipse cx="95" cy="95" rx="62" ry="62" stroke="black" stroke-opacity="0.12" stroke-width="0.8" stroke-dasharray="2 2" />
+  <ellipse cx="95" cy="95" rx="62" ry="24" stroke="black" stroke-opacity="0.14" stroke-width="0.8" stroke-dasharray="2 2" />
+  <ellipse cx="95" cy="95" rx="24" ry="62" stroke="black" stroke-opacity="0.14" stroke-width="0.8" stroke-dasharray="2 2" />
+  <circle cx="95" cy="95" r="46" fill="url(#sphere)" />
+  <circle cx="95" cy="95" r="46" fill="url(#rim)" />
+  <ellipse cx="79" cy="75" rx="20" ry="14" fill="url(#sheen)" opacity="0.75" />
+  <defs>
+    <linearGradient id="plate" x1="0" y1="190" x2="343.583" y2="-147.25" gradientUnits="userSpaceOnUse">
+      <stop stop-color="white" />
+      <stop offset="1" stop-color="#808080" />
+    </linearGradient>
+    <radialGradient id="sphere" cx="0.36" cy="0.3" r="0.85">
+      <stop offset="0" stop-color="#f4f4f5" />
+      <stop offset="0.42" stop-color="#7c6bd6" />
+      <stop offset="0.72" stop-color="#2b3f8c" />
+      <stop offset="1" stop-color="#0b0b12" />
+    </radialGradient>
+    <radialGradient id="rim" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0.7" stop-color="white" stop-opacity="0" />
+      <stop offset="0.94" stop-color="#a5b4fc" stop-opacity="0.55" />
+      <stop offset="1" stop-color="white" stop-opacity="0.9" />
+    </radialGradient>
+    <radialGradient id="sheen" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="white" stop-opacity="0.95" />
+      <stop offset="1" stop-color="white" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+</svg>

@@ -1,0 +1,56 @@
+[
+  {
+    "name": "orb-hydrogen",
+    "type": "registry:ui",
+    "title": "Hydrogen",
+    "description": "A quantum-orbital orb: |psi|^2 of a hydrogen-like wave function projected onto a rotating dome, shaded with rainbow chromatic bands over dark metal. Precession and a drifting flow field keep the pattern from ever visibly looping.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "url": "/r/orb-hydrogen.json"
+  },
+  {
+    "name": "orb-corona",
+    "type": "registry:ui",
+    "title": "Corona",
+    "description": "A raymarched SDF shell with volumetric godrays: the space between a sine-warped sphere and a plain one, lit only by light accumulated along each ray as it passes through the hollow.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "url": "/r/orb-corona.json"
+  },
+  {
+    "name": "orb-nimbus",
+    "type": "registry:ui",
+    "title": "Nimbus",
+    "description": "Light diffusing through a cloud: a true volumetric march with Beer-Lambert transmittance, a second march toward the light for self-shadowing, and a Henyey-Greenstein phase function that blooms the lit limb.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "url": "/r/orb-nimbus.json"
+  },
+  {
+    "name": "orb-rocaille",
+    "type": "registry:ui",
+    "title": "Rocaille",
+    "description": "Ornate scrollwork wrapped onto a sphere: ten colour layers, each folded by a nine-step feedback warp, sampled through a stereographic projection of the orb's dome so the filigree compresses toward the rim.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "url": "/r/orb-rocaille.json"
+  },
+  {
+    "name": "orb-quasar",
+    "type": "registry:ui",
+    "title": "Quasar",
+    "description": "A Rodrigues-swept core seen through frosted, dispersive glass: an analytic ray/sphere intersection gives an exact normal, jittered for frost and refracted at three indices, so the caustics inside split into rainbow fringes.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "url": "/r/orb-quasar.json"
+  },
+  {
+    "name": "all",
+    "type": "registry:ui",
+    "title": "All Orba Orbs",
+    "description": "Installs every orb and the shared WebGL runtime in one command.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "url": "/r/all.json"
+  }
+]

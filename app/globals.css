@@ -1,0 +1,375 @@
+@import "tailwindcss";
+
+@source "./**/*.{ts,tsx}";
+@source "../components/**/*.{ts,tsx}";
+@source "../lib/**/*.{ts,tsx}";
+@source "../orbs/**/*.{ts,tsx}";
+
+@theme {
+  /*
+   * Bridge :root[data-theme] → Tailwind color utilities (bg-bg, text-fg-dim,
+   * bg-surface, …). Source of truth: :root[data-theme="light" | "dark"] below.
+   */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-preset: var(--preset);
+
+  --color-bg: var(--color-bg);
+  --color-fg-strong: var(--color-fg-strong);
+  --color-fg: var(--color-fg);
+  --color-fg-muted: var(--color-fg-muted);
+  --color-fg-dim: var(--color-fg-dim);
+  --color-link: var(--color-link);
+  --color-link-hover: var(--color-link-hover);
+
+  --color-surface: var(--color-surface);
+  --color-surface-soft: var(--color-surface-soft);
+  --color-surface-muted: var(--color-surface-muted);
+  --color-surface-raised: var(--color-surface-raised);
+  --color-code-bg: var(--color-code-bg);
+  --color-border: var(--color-border);
+  --color-border-soft: var(--color-border-soft);
+  --color-shell: var(--color-shell);
+  --color-shell-overlay: var(--color-shell-overlay);
+  --color-backdrop: var(--color-backdrop);
+  --color-spotlight: var(--color-spotlight);
+
+  /* Default UI font: Geist Pixel Circle (variable set on <body> by next/font). */
+  --font-sans: var(--font-geist-pixel-circle), ui-sans-serif, system-ui, sans-serif;
+
+  --font-pixel-square: var(--font-geist-pixel-square);
+  --font-pixel-grid: var(--font-geist-pixel-grid);
+  --font-pixel-circle: var(--font-geist-pixel-circle);
+  --font-pixel-triangle: var(--font-geist-pixel-triangle);
+  --font-pixel-line: var(--font-geist-pixel-line);
+}
+
+@layer base {
+  button,
+  input[type="button"],
+  input[type="submit"],
+  input[type="reset"],
+  [role="button"] {
+    cursor: pointer;
+  }
+
+  button:disabled,
+  [role="button"][aria-disabled="true"] {
+    cursor: not-allowed;
+  }
+}
+
+:root[data-theme="dark"] {
+  --background: #000000;
+  --foreground: #fafafa;
+  --muted-foreground: #a1a1aa;
+  --preset: #202020;
+
+  --color-bg: #000000;
+  --color-fg-strong: #fafafa;
+  --color-fg: #e4e4e7;
+  --color-fg-muted: #a1a1aa;
+  --color-fg-dim: #71717a;
+  --color-surface: #0c0c0c;
+  --color-surface-soft: #181818;
+  --color-surface-muted: #171717;
+  --color-surface-raised: #202020;
+  --color-code-bg: #101010;
+  --color-border: rgba(255, 255, 255, 0.12);
+  --color-border-soft: rgba(255, 255, 255, 0.08);
+  --color-link: #f4f4f5;
+  --color-link-hover: #ffffff;
+  --color-shell: rgba(0, 0, 0, 0.5);
+  --color-shell-overlay: rgba(0, 0, 0, 0.2);
+  --color-backdrop: rgba(0, 0, 0, 0.7);
+  --color-spotlight: rgba(255, 255, 255, 0.08);
+
+  --orb-card-glow: radial-gradient(
+    120% 120% at 50% 50%,
+    rgba(255, 255, 255, 0.05),
+    transparent 70%
+  );
+  --focus-ring: rgba(255, 255, 255, 0.2);
+}
+
+:root[data-theme="light"] {
+  --background: #f4f4f4;
+  --foreground: #050505;
+  --muted-foreground: #5e5e55;
+  --preset: #eaeaea;
+
+  --color-bg: #ffffff;
+  --color-fg-strong: #050505;
+  --color-fg: #1b1b18;
+  --color-fg-muted: #5e5e55;
+  --color-fg-dim: #8e8e85;
+  --color-surface: #ececec;
+  --color-surface-soft: #f3f3f3;
+  --color-surface-muted: #e8e8e8;
+  --color-surface-raised: #dfdfdf;
+  --color-code-bg: #ffffff;
+  --color-border: rgba(0, 0, 0, 0.12);
+  --color-border-soft: rgba(0, 0, 0, 0.08);
+  --color-link: #0b0b0a;
+  --color-link-hover: #000000;
+  --color-shell: rgba(255, 255, 255, 0.5);
+  --color-shell-overlay: rgba(255, 255, 255, 0.2);
+  --color-backdrop: rgba(255, 255, 255, 0.7);
+  --color-spotlight: rgba(0, 0, 0, 0.08);
+
+  --orb-card-glow: radial-gradient(
+    120% 120% at 50% 50%,
+    rgba(0, 0, 0, 0.04),
+    transparent 70%
+  );
+  --focus-ring: rgba(0, 0, 0, 0.2);
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  background: radial-gradient(900px 520px at 50% -180px, var(--color-spotlight), transparent 58%),
+    var(--background);
+  color: var(--foreground);
+}
+
+main {
+  isolation: isolate;
+}
+
+code,
+pre {
+  font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    monospace;
+}
+
+:focus-visible {
+  outline: 1px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.theme-text-strong {
+  color: var(--color-fg-strong);
+}
+
+.theme-text {
+  color: var(--color-fg);
+}
+
+.theme-text-muted {
+  color: var(--color-fg-muted);
+}
+
+.theme-text-dim {
+  color: var(--color-fg-dim);
+}
+
+.theme-link {
+  color: var(--color-link);
+}
+
+.theme-link:hover {
+  color: var(--color-link-hover);
+}
+
+/* ------------------------------- DialKit ---------------------------------- */
+/* Flatten DialKit's default glass panel into the site's flat surface look. */
+
+.dialkit-panel:has(.dialkit-panel-inner[data-collapsed="true"]) {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: var(--color-surface);
+  padding: 4px;
+  box-sizing: border-box;
+}
+
+/* Nudge the header controls left so the collapsed dial never overlaps them. */
+body[data-playground-route="true"] > .fixed.right-4.top-4 {
+  right: calc(1rem + 42px + 0.5rem);
+}
+
+.dialkit-panel[data-position="top-right"]:not(:has(.dialkit-panel-inner[data-collapsed="true"])) {
+  top: calc(1rem + 42px + 0.5rem);
+  right: 1rem;
+}
+
+/* Orbs expose a lot of params — cap the panel height so controls can scroll. */
+body[data-playground-route="true"]
+  .dialkit-panel[data-position="top-right"]
+  .dialkit-panel-inner:not([data-collapsed="true"]) {
+  max-height: calc(100dvh - 1rem - 42px - 0.5rem - 1rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-bottom: 12px !important;
+}
+
+.dialkit-root,
+.dialkit-root[data-theme="system"] {
+  color: var(--foreground);
+  --dial-glass-bg: var(--background);
+  --dial-dropdown-bg: var(--background);
+  --dial-surface: var(--color-surface);
+  --dial-surface-hover: var(--color-surface-soft);
+  --dial-surface-active: var(--color-surface-soft);
+  --dial-surface-subtle: var(--color-surface);
+  --dial-text-root: var(--foreground);
+  --dial-text-section: var(--muted-foreground);
+  --dial-text-label: var(--muted-foreground);
+  --dial-text-focus: var(--foreground);
+  --dial-text-primary: var(--foreground);
+  --dial-text-secondary: var(--foreground);
+  --dial-text-tertiary: var(--muted-foreground);
+  --dial-border: transparent;
+  --dial-border-hover: var(--color-surface-raised);
+  --dial-backdrop-blur: 0px;
+  --dial-radius: 8px;
+  --dial-shadow: none;
+  --dial-shadow-collapsed: none;
+  --dial-shadow-dropdown: none;
+}
+
+.dialkit-panel-inner:not([data-collapsed="true"]) {
+  border: 0 !important;
+  border-radius: 12px !important;
+  background: var(--background) !important;
+  box-shadow: none !important;
+  padding: 4px !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.dialkit-panel-inner:not([data-collapsed="true"]) .dialkit-panel-header {
+  margin-bottom: 4px;
+  padding: 8px 8px 10px;
+  border-bottom: 0;
+}
+
+.dialkit-panel-inner:not([data-collapsed="true"]) .dialkit-folder-title-root {
+  color: var(--foreground);
+}
+
+.dialkit-panel-inner:not([data-collapsed="true"]) .dialkit-folder,
+.dialkit-panel-inner:not([data-collapsed="true"]) .dialkit-folder:not(.dialkit-folder-root) {
+  border: 0;
+}
+
+.dialkit-panel-inner:not([data-collapsed="true"]) .dialkit-folder:not(.dialkit-folder-root) {
+  margin: 0;
+  padding: 0;
+}
+
+.dialkit-panel-inner:not([data-collapsed="true"])
+  .dialkit-folder:not(.dialkit-folder-root)
+  > .dialkit-folder-header {
+  padding-left: 0.45rem;
+  padding-right: 0.5rem;
+}
+
+.dialkit-panel-inner:not([data-collapsed="true"]) .dialkit-folder-inner {
+  gap: 6px;
+  padding-bottom: 0;
+}
+
+.dialkit-panel-inner:not([data-collapsed="true"]) .dialkit-slider,
+.dialkit-panel-inner:not([data-collapsed="true"]) .dialkit-toggle,
+.dialkit-panel-inner:not([data-collapsed="true"]) .dialkit-button,
+.dialkit-panel-inner:not([data-collapsed="true"]) .dialkit-labeled-control,
+.dialkit-panel-inner:not([data-collapsed="true"]) .dialkit-select-trigger,
+.dialkit-panel-inner:not([data-collapsed="true"]) .dialkit-color-control,
+.dialkit-panel-inner:not([data-collapsed="true"]) .dialkit-text-input,
+.dialkit-panel-inner:not([data-collapsed="true"]) .dialkit-preset-trigger {
+  border: 0 !important;
+  background: var(--color-surface) !important;
+  box-shadow: none !important;
+}
+
+.dialkit-panel-inner:not([data-collapsed="true"]) .dialkit-slider:hover,
+.dialkit-panel-inner:not([data-collapsed="true"]) .dialkit-toggle:hover,
+.dialkit-panel-inner:not([data-collapsed="true"]) .dialkit-button:hover,
+.dialkit-panel-inner:not([data-collapsed="true"]) .dialkit-select-trigger:hover,
+.dialkit-panel-inner:not([data-collapsed="true"]) .dialkit-preset-trigger:hover {
+  background: var(--color-surface-soft) !important;
+}
+
+.dialkit-select-dropdown,
+.dialkit-preset-dropdown,
+.dialkit-shortcuts-dropdown {
+  border: 0 !important;
+  background: var(--background) !important;
+  box-shadow: none !important;
+  /* Portaled outside .dialkit-root: re-apply text tokens. */
+  color: var(--foreground);
+  --dial-text-root: var(--foreground);
+  --dial-text-section: var(--muted-foreground);
+  --dial-text-label: var(--muted-foreground);
+  --dial-text-focus: var(--foreground);
+  --dial-text-primary: var(--foreground);
+  --dial-text-secondary: var(--foreground);
+  --dial-text-tertiary: var(--muted-foreground);
+}
+
+.dialkit-select-dropdown {
+  max-height: min(420px, calc(100dvh - 7rem));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+:root[data-theme="light"] .dialkit-root {
+  --dial-surface-active: #dbdbdb;
+  --dial-border-hover: #c7c7c1;
+}
+
+.dialkit-select-option,
+.dialkit-preset-item {
+  border: 0 !important;
+  background: var(--color-surface);
+}
+
+.dialkit-panel-inner[data-collapsed="true"] {
+  position: relative;
+  box-sizing: border-box;
+  width: 34px !important;
+  height: 34px !important;
+  border: 0 !important;
+  border-radius: 8px !important;
+  background: var(--color-bg) !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  color: var(--foreground) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  transition: opacity 150ms ease-out, color 150ms ease-out;
+}
+
+.dialkit-panel-inner[data-collapsed="true"]:hover {
+  opacity: 0.9;
+}
+
+.dialkit-panel-inner[data-collapsed="true"] .dialkit-panel-icon {
+  left: 50% !important;
+  top: 50% !important;
+  right: auto !important;
+  width: 20px !important;
+  height: 20px !important;
+  color: currentColor !important;
+  transform: translate(-50%, -50%) !important;
+}
+
+.dialkit-panel-inner[data-collapsed="true"] .dialkit-folder-header {
+  height: 100%;
+}
+
+.dialkit-panel-inner[data-collapsed="true"] .dialkit-panel-header {
+  height: 100%;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.dialkit-panel-inner[data-collapsed="true"] .dialkit-folder-header-top {
+  height: 100%;
+  padding: 0 !important;
+}
