@@ -13,4 +13,4 @@ export {
   type ShaderOrbProps
 } from "./core/orba-core";
 
-export { OrbHydrogen, hydrogenOrb, type OrbHydrogenProps } from "./orbs/orb-hydrogen";
+export { Shdr11, shdr11Orb, type Shdr11Props } from "./orbs/shdr-11";

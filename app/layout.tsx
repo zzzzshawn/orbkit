@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Link from "next/link";
+import { Public_Sans } from "next/font/google";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 import {
@@ -14,7 +15,8 @@ import {
 import { DialKitRouteRoot } from "@/components/dialkit-route-root";
 import { HomeLink } from "@/components/home-link";
 import { RouteAwareSiteFooter } from "@/components/route-aware-site-footer";
-import { SiteMarkIcon } from "@/components/site-mark-icon";
+import { OrbMark } from "@/components/orb-mark";
+import { SiteNav } from "@/components/site-nav";
 import { ThemeToggle } from "@/components/theme-toggle";
 import {
   CREATOR_NAME,
@@ -34,7 +36,14 @@ const siteUrl = (() => {
   }
 })();
 
+const publicSans = Public_Sans({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-public-sans"
+});
+
 const fontVariables = [
+  publicSans.variable,
   GeistSans.variable,
   GeistMono.variable,
   GeistPixelSquare.variable,
@@ -116,22 +125,29 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning data-theme="dark" style={{ colorScheme: "dark" }}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      data-theme="dark"
+      className={fontVariables}
+      style={{ colorScheme: "dark" }}
+    >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body
-        className={`${GeistPixelCircle.className} ${fontVariables} flex min-h-dvh flex-col font-medium antialiased`}
+        className="flex min-h-dvh flex-col font-sans font-medium antialiased"
       >
         <Link
           href="/"
           aria-label="Home"
-          className="fixed left-4 top-4 z-20 inline-flex items-center justify-center gap-2 rounded-[10px] bg-[#dfdfdf] p-0.5 transition-transform duration-200 ease will-change-transform before:absolute before:left-1/2 before:top-1/2 before:z-0 before:size-11 before:-translate-x-1/2 before:-translate-y-1/2 before:content-[''] focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-(--focus-ring) motion-reduce:transition-none motion-reduce:will-change-auto [@media(hover:hover)_and_(pointer:fine)]:hover:-translate-y-1 [@media(hover:hover)_and_(pointer:fine)]:hover:rotate-4 [@media(hover:hover)_and_(pointer:fine)]:hover:scale-[1.03] motion-reduce:[@media(hover:hover)_and_(pointer:fine)]:hover:translate-y-0 motion-reduce:[@media(hover:hover)_and_(pointer:fine)]:hover:rotate-0 motion-reduce:[@media(hover:hover)_and_(pointer:fine)]:hover:scale-100"
+          className="fixed left-4 top-4 z-20 inline-flex items-center justify-center gap-2 rounded-[10px] transition-transform duration-200 ease will-change-transform before:absolute before:left-1/2 before:top-1/2 before:z-0 before:size-11 before:-translate-x-1/2 before:-translate-y-1/2 before:content-[''] focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-(--focus-ring) motion-reduce:transition-none motion-reduce:will-change-auto [@media(hover:hover)_and_(pointer:fine)]:hover:-translate-y-1 [@media(hover:hover)_and_(pointer:fine)]:hover:rotate-4 [@media(hover:hover)_and_(pointer:fine)]:hover:scale-[1.03] motion-reduce:[@media(hover:hover)_and_(pointer:fine)]:hover:translate-y-0 motion-reduce:[@media(hover:hover)_and_(pointer:fine)]:hover:rotate-0 motion-reduce:[@media(hover:hover)_and_(pointer:fine)]:hover:scale-100"
         >
-          <SiteMarkIcon className="pointer-events-none relative z-10 size-8.5 shrink-0 select-none" />
+          <OrbMark size={34} className="pointer-events-none relative z-10 select-none" />
         </Link>
 
         <div className="fixed right-4 top-4 z-20 flex items-center gap-2">
+          <SiteNav />
           <HomeLink />
           <ThemeToggle />
         </div>

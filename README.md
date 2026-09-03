@@ -7,7 +7,7 @@ Built the same way as [Dot Matrix](https://dotmatrix.zzzzshawn.cloud) — a docs
 registry, with the components living in-repo as plain source files.
 
 ```bash
-npx shadcn@latest add @orba/orb-hydrogen
+npx shadcn@latest add @orba/shdr-11
 ```
 
 > The registry namespace, product name, and homepage all come from
@@ -18,18 +18,25 @@ npx shadcn@latest add @orba/orb-hydrogen
 
 | Slug | Title | Description |
 | --- | --- | --- |
-| `orb-hydrogen` | Hydrogen | Quantum orbital — \|psi\|² of a hydrogen-like wave function on a rotating dome, rainbow chromatic bands over dark metal. |
-| `orb-corona` | Corona | Raymarched SDF shell — the space between a sine-warped sphere and a plain one, lit only by godrays accumulated along each ray. |
-| `orb-nimbus` | Nimbus | Light diffusing through a cloud — a volumetric march with Beer-Lambert transmittance, a second march toward the light for self-shadowing, and a Henyey-Greenstein phase function that blooms the lit limb. |
-| `orb-rocaille` | Rocaille | Ornate scrollwork — ten colour layers folded by a nine-step feedback warp, sampled through a stereographic projection of the dome so the filigree compresses toward the rim. |
-| `orb-quasar` | Quasar | A Rodrigues-swept core inside frosted, dispersive glass — analytic ray/sphere intersect for an exact normal, jittered for frost, refracted at three indices so the caustics split into rainbow fringes. |
-
+| `shdr-11` | Hydrogen | Quantum orbital — \|psi\|² of a hydrogen-like wave function on a rotating dome, rainbow chromatic bands over dark metal. |
+| `shdr-31` | Corona | Raymarched SDF shell — the space between a sine-warped sphere and a plain one, lit only by godrays accumulated along each ray. |
+| `shdr-21` | Nimbus | Light diffusing through a cloud — a volumetric march with Beer-Lambert transmittance, a second march toward the light for self-shadowing, and a Henyey-Greenstein phase function that blooms the lit limb. |
+| `shdr-02` | Rocaille | Ornate scrollwork — ten colour layers folded by a nine-step feedback warp, sampled through a stereographic projection of the dome so the filigree compresses toward the rim. |
+| `shdr-01` | Dispersion | A cut-glass orb whose own shell does the dispersing — grazing rays ride the turbulence-warped sphere so the limb glows, interior sheets split into rainbow striations, and an analytic silhouette keeps the edge knife-sharp. |
+| `shdr-28` | Bitdumb | Nested binary grids shuttering on a tumbling bit-sphere — a 20-level power-of-two zoom wrapped onto the ball stereographically, with an animated per-cell shutter that lets each level occlude the ones beneath. |
+| `shdr-22` | Vectors | Field lines swirling around the ball about a wandering axis — an exact 90° Rodrigues rotation forks into clean streaks and cell-quantized shimmer, pulled onto the sphere's own shell before evaluation. |
+| `shdr-20` | Falls | A water film rushing down the ball, fountain-style — vertically squashed turbulence scrolling at nine times the clock, a foam blend over a coherent surface, and the original's sigmoid cliff swapped for the sphere's own shell. |
+| `shdr-15` | Muons | An iridescent particle-track web worn as the ball's skin — ten micro-layers anchored to each ray's sphere-entry point, with a per-layer jittered −90° Rodrigues axis and threads where the march sticks on field shells. |
+| `shdr-14` | Dither | A lit plasma dome quantized to chunky two-tone pixels — an 8×8 ordered Bayer matrix (generated procedurally; ES 1.0 has no arrays or bitwise ops) snaps the shading onto an ink-to-paper tone ladder, 1-bit style. |
+| `shdr-23` | Phosphor | An ASCII glyph matrix in CRT green wrapped on the ball — woven dash characters whose lit-row count quantizes a streaming field, with blocky super-grid dropouts and a stereographic wrap that rolls the weave around the sphere. |
+| `shdr-29` | Mosaic | An LED tile wall lighting up in flowing blobs — bevelled tiles that stay faintly present when unlit, an fbm field gating them through the rotating dome's wrap, and a reshuffling scattering of confetti-coloured tiles in the bright regions. |
+| `shdr-13` | Ion | A plasma globe — pink-to-violet lightning filaments crawling from a hot nucleus to the glass, each streamer the joint zero set of two animated direction-sphere fields, rooted at the core while its far end wanders and flares on the shell. |
 ## Usage
 
 ```tsx
-import { OrbHydrogen } from "@/components/ui/orb-hydrogen";
+import { Shdr11 } from "@/components/ui/shdr-11";
 
-<OrbHydrogen size={280} state="idle" />;
+<Shdr11 size={280} state="idle" />;
 ```
 
 Orbs are built for agent UIs, so they take a `state` rather than a pile of animation props. Each
@@ -39,27 +46,43 @@ energy) — which the shader reads as uniforms.
 ```tsx
 const orbState =
   status === "connecting" ? "thinking"
-  : isUserSpeaking ? "listening"
   : isAgentSpeaking ? "speaking"
   : "idle";
 
-<OrbHydrogen size={320} state={orbState} />;
+<Shdr11 size={320} state={orbState} />;
 ```
 
 Override any shader parameter; anything you leave out follows the active state's preset.
 
 ```tsx
-<OrbHydrogen state="speaking" params={{ glow: 1.4, chromaSpread: 0.3 }} />
+<Shdr11 state="speaking" params={{ glow: 1.4, chromaSpread: 0.3 }} />
 ```
 
 Full prop and parameter tables: [`/getting-started/usage`](app/getting-started/usage/page.tsx).
+
+## For agents
+
+The site exposes the same surface an AI agent needs to install and tune an orb without reading
+the source:
+
+| Path | What |
+| --- | --- |
+| `/agents` · `/agents.md` | How an agent uses the library — chooser, rules, prompts |
+| `/llms.txt` | Overview, install, states, every prop, every orb with its one-line look |
+| `/skill.md` · `/skill/recipes.md` | An agent skill (YAML frontmatter) plus the JSX recipes it loads |
+| `/api/v1/components` · `/api/v1/components/{slug}` | JSON catalog; the per-orb document carries the full param schema, colours and state presets |
+| `/openapi.json` | The API contract |
+| `/developers` | Human-readable API docs |
+
+All of it is derived at request time from `lib/registry-config.ts` and each orb's `OrbVariant`
+by `lib/agent-docs.ts`, so adding an orb updates every endpoint at once.
 
 ## Architecture
 
 ```
 orbs/
   core/orba-core.tsx     the WebGL runtime: types, GLSL prelude, volume synthesis, <ShaderOrb>
-  orbs/orb-hydrogen.tsx  one file per orb: fragment shader + param schema + state presets
+  orbs/shdr-11.tsx  one file per orb: fragment shader + param schema + state presets
   index.ts               barrel for the docs site
 lib/
   site-config.ts         name, namespace, homepage — the only place identity is written
@@ -74,8 +97,8 @@ Two design rules make the rest fall out:
 1. **The param schema is data.** `OrbVariant.params` drives the DialKit controls in the
    playground *and* the parameter table in the docs. Adding an orb never means hand-writing
    sliders or documentation rows.
-2. **`"use client"` lives on the runtime, not the orb.** `orb-hydrogen.tsx` has no directive, so
-   server components can read `hydrogenOrb` as real data. Marking it would turn every export into
+2. **`"use client"` lives on the runtime, not the orb.** `shdr-11.tsx` has no directive, so
+   server components can read `shdr11Orb` as real data. Marking it would turn every export into
    an opaque client reference and break the docs tables.
 
 ### Registry file types
@@ -86,8 +109,9 @@ imports `@/components/ui/orba-core`, which breaks every install.
 
 ## Adding an orb
 
-1. Create `orbs/orbs/orb-<name>.tsx` exporting a component and an `OrbVariant`. Copy
-   `orb-hydrogen.tsx` as the template — no `"use client"` directive.
+1. Create `orbs/orbs/shdr-<NN>.tsx` — the next free number — exporting a component and an
+   `OrbVariant`. Copy `shdr-11.tsx` as the template; no `"use client"` directive. Component
+   `Shdr<NN>`, variant `shdr<NN>Orb`, variant key and slug both `shdr-<NN>`.
 2. Write the fragment shader against the prelude in `ORB_GLSL_HELPERS` (`uRes`, `uTime`, `uAnim`,
    `uInput`, `uOutput`, plus `noise`/`fbm`/`orbUV`). Declare every tunable as a `uP_<key>` uniform
    and list it in `params` — the engine generates the uniform declarations from the schema.
@@ -101,7 +125,7 @@ motion up or slows it down instead of jumping the phase.
 ### Porting a shader from Shadertoy or similar
 
 The runtime is WebGL 1 / GLSL ES 1.0, which is stricter than the ES 3.0 most shader snippets
-assume. The usual fixes, all of which `orb-corona.tsx` needed:
+assume. The usual fixes, all of which `shdr-31.tsx` needed:
 
 - `transpose()`, `inverse()`, `round()` and friends are ES 3.0 — hand-write them.
 - Write to `gl_FragColor`; there is no user-declared `out vec4 fragColor`.
@@ -109,6 +133,13 @@ assume. The usual fixes, all of which `orb-corona.tsx` needed:
   body as an `if (…) break;`.
 - `u_time` / `iTime` → an `integrate: true` param; `u_resolution` / `iResolution` → `uRes`.
 - Loop bounds and supersampling factors must be `#define`s, not uniforms.
+- `pow(x, n)` is **undefined for a negative `x`** — the spec only covers `x >= 0`, and golfed
+  listings freely raise signed dot products to even powers. Some drivers return NaN and the pixel
+  dies. Square twice instead: `m2 = m*m; m2*m2` is exact and cheaper.
+- `fwidth()`/`dFdx()` need the `OES_standard_derivatives` extension in WebGL 1, and the
+  `#extension` directive cannot legally follow the prelude's declarations. When the transform
+  chain is known, skip the extension: derive the pixel footprint analytically and test against
+  it — `shdr-28` does this for its grid edges, and gets a line-width parameter for free.
 
 **Emissive shaders need care with alpha.** Orbs composite onto the page, so an opaque
 `vec4(col, 1.0)` paints a square. Derive alpha from luminance — but output `vec4(col, a)`, not
@@ -121,6 +152,13 @@ alpha**. Fading only alpha leaves the pixel emitting at full brightness right up
 which reads as a hard rim wherever the taper crosses something bright.
 
 ### Making a flat or open shader read as an orb
+
+**Make the orb the object.** This is the standing rule for every new orb: bounding an effect
+inside a spherical envelope reads as an exhibit in a jar. Re-derive the effect's structural
+surface so it *becomes* the sphere — `shdr-01` evaluates its shell distance on the
+turbulence-warped point, so the ball's own surface does the dispersing; `shdr-20` swaps its
+sigmoid cliff for the sphere's own shell, so the water film flows down the ball itself. The
+envelope and the analytic silhouette then bound the residue, not the subject.
 
 Most interesting shaders are not spheres. Two moves cover almost every case:
 
@@ -150,7 +188,7 @@ isoline through a warped field (`abs(fract(v) - 0.5)`) gives a thin, branching n
 
 ### Volumetric orbs
 
-`orb-nimbus` is the worked example — march a density field, track Beer-Lambert transmittance, and
+`shdr-21` is the worked example — march a density field, track Beer-Lambert transmittance, and
 do a short second march toward the light for self-shadowing. Alpha is then `1 - T`, which is
 exactly what the volume occludes, so a volumetric orb needs no radial fade at all: bound the
 density by the sphere and the silhouette comes free.
@@ -219,7 +257,7 @@ pnpm dev
 The registry is served by the dev server, so the CLI can install from it directly:
 
 ```bash
-npx shadcn@latest add http://localhost:3000/r/orb-hydrogen.json
+npx shadcn@latest add http://localhost:3000/r/shdr-11.json
 ```
 
 Run that against a scratch project with a `components.json` and confirm both files land in

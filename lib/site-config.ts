@@ -22,7 +22,7 @@ export const SITE_DESCRIPTION =
 export const CREATOR_NAME = "zzzzshawn";
 export const CREATOR_URL = "https://x.com/zzzzshawn/";
 
-/** `npx shadcn@latest add @orba/orb-hydrogen` */
+/** `npx shadcn@latest add @orba/shdr-11` */
 export function shadcnAddCommand(itemName: string): string {
   return `npx shadcn@latest add @${REGISTRY_NAMESPACE}/${itemName}`;
 }

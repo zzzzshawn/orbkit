@@ -40,7 +40,7 @@ export default async function ManualSetupPage() {
           uses a different alias, adjust the import at the top of the orb file — that is the only
           path either file references.
         </p>
-        <DocsCode>{`// tsconfig.json
+        <DocsCode lang="jsonc">{`// tsconfig.json
 {
   "compilerOptions": {
     "paths": { "@/*": ["./*"] }
@@ -66,7 +66,7 @@ export default async function ManualSetupPage() {
       ))}
 
       <DocsSection heading={`${files.length + 2}. Use it`}>
-        <DocsCode>{`import { ${first.componentName} } from "@/components/ui/${first.fileName.replace(".tsx", "")}";
+        <DocsCode lang="tsx">{`import { ${first.componentName} } from "@/components/ui/${first.fileName.replace(".tsx", "")}";
 
 <${first.componentName} size={280} state="idle" />`}</DocsCode>
       </DocsSection>

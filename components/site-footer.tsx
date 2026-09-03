@@ -1,5 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
+
+import { OrbMark } from "@/components/orb-mark";
 
 import { CREATOR_URL, REGISTRY_NAMESPACE } from "@/lib/site-config";
 
@@ -17,18 +18,10 @@ export function SiteFooter() {
       className="relative mx-auto mb-8 mt-20 h-[85dvh] w-full max-w-[1350px] rounded-3xl bg-surface md:mt-40 md:h-[70dvh]"
     >
       <span
-        className="pointer-events-none absolute right-1/2 size-[280px] translate-x-1/2 -rotate-6 rounded-[76px] bg-background p-1.5 max-md:bottom-28! sm:p-3 md:top-1/2 md:size-[340px] md:-translate-y-1/2 md:rounded-[86px] [html[data-theme='dark']_&]:bg-[#d0d0d0] [html[data-theme='dark']_&]:shadow-[0_3px_4px_0px_rgba(255,255,255,1)_inset]"
+        className="pointer-events-none absolute right-1/2 flex translate-x-1/2 -rotate-6 items-center justify-center max-md:bottom-28! md:top-1/2 md:-translate-y-1/2"
         aria-hidden="true"
       >
-        <Image
-          src="/icon.svg"
-          alt=""
-          width={200}
-          height={200}
-          className="size-full select-none rounded-[74px] shadow-[0_40px_80px_-21px_rgba(0,0,0,0.5)] [html[data-theme='dark']_&]:shadow-[0_40px_80px_-21px_rgba(0,0,0,1)]"
-          draggable={false}
-          priority
-        />
+        <OrbMark size={340} className="text-foreground max-md:scale-[0.824]" />
       </span>
 
       <div className="pointer-events-auto absolute left-8 top-8 z-10 flex flex-col gap-2.5 text-xl italic md:text-3xl">
@@ -48,6 +41,9 @@ export function SiteFooter() {
           </Link>
           <Link href="/getting-started/manual" className={footerActionClass}>
             Manual setup
+          </Link>
+          <Link href="/agents" className={footerActionClass}>
+            For agents
           </Link>
           <a
             href={SPONSOR_URL}

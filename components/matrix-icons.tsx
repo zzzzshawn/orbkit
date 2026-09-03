@@ -1,17 +1,8 @@
 /* ----------------------------------------------------------------------------
-   Dot-matrix UI icons — 11×11 dots on a 24×24 viewBox, every dot drawn faintly
-   with the silhouette's dots at full opacity. Same construction across all
-   icons so the header chrome reads as one set.
+   UI icons for the header chrome and copy affordances. All line art on an
+   18x18 viewBox, drawn in currentColor — the supplied artwork hardcoded
+   #1c1f21, which would have gone invisible against the dark theme.
 ---------------------------------------------------------------------------- */
-
-const ICON_DOT_GRID: Array<[number, number]> = [];
-for (let y = 2; y <= 22; y += 2) {
-  for (let x = 2; x <= 22; x += 2) {
-    ICON_DOT_GRID.push([x, y]);
-  }
-}
-
-const k = (x: number, y: number) => `${x},${y}`;
 
 export type MatrixDotIconProps = {
   className?: string;
@@ -19,79 +10,119 @@ export type MatrixDotIconProps = {
   size?: number;
 };
 
-function MatrixDotIcon({
-  active,
+/** Shared frame so every icon in this file lines up on the same grid. */
+function IconFrame({
   className,
-  size = 18
-}: MatrixDotIconProps & { active: Set<string> }) {
+  size = 18,
+  children
+}: MatrixDotIconProps & { children: React.ReactNode }) {
   return (
-    <svg className={className} width={size} height={size} viewBox="0 0 24 24" aria-hidden>
-      {ICON_DOT_GRID.map(([x, y]) => (
-        <circle key={k(x, y)} cx={x} cy={y} r="0.7" fill="currentColor" opacity={0.1} />
-      ))}
-      {ICON_DOT_GRID.filter(([x, y]) => active.has(k(x, y))).map(([x, y]) => (
-        <circle key={`on-${k(x, y)}`} cx={x} cy={y} r="0.8" fill="currentColor" />
-      ))}
+    <svg
+      className={className}
+      width={size}
+      height={size}
+      viewBox="0 0 18 18"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.5}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden
+    >
+      {children}
     </svg>
   );
 }
 
-const CLIPBOARD_SHELL = [
-  k(10, 2), k(12, 2), k(14, 2),
-  k(8, 4), k(10, 4), k(12, 4), k(14, 4), k(16, 4),
-  k(8, 6), k(10, 6), k(12, 6), k(14, 6), k(16, 6),
-  k(4, 6), k(4, 8), k(4, 10), k(4, 12), k(4, 14), k(4, 16), k(4, 18), k(4, 20),
-  k(20, 6), k(20, 8), k(20, 10), k(20, 12), k(20, 14), k(20, 16), k(20, 18), k(20, 20),
-  k(6, 22), k(8, 22), k(10, 22), k(12, 22), k(14, 22), k(16, 22), k(18, 22)
-];
-
-const COPY_DOTS = new Set(CLIPBOARD_SHELL);
-
-const CHECK_DOTS = new Set([
-  ...CLIPBOARD_SHELL,
-  k(8, 16), k(10, 18), k(12, 16), k(14, 14), k(16, 12)
-]);
-
-const THEME_DOTS = new Set([
-  k(2, 8), k(2, 10), k(2, 12), k(2, 14), k(2, 16),
-  k(4, 6), k(4, 8), k(4, 10), k(4, 12), k(4, 14), k(4, 16), k(4, 18),
-  k(6, 4), k(6, 6), k(6, 8), k(6, 14), k(6, 16), k(6, 18), k(6, 20),
-  k(8, 2), k(8, 4), k(8, 6), k(8, 16), k(8, 18), k(8, 20), k(8, 22),
-  k(10, 2), k(10, 4), k(10, 18), k(10, 20), k(10, 22),
-  k(12, 2), k(12, 6), k(12, 8), k(12, 10), k(12, 12), k(12, 14), k(12, 16), k(12, 18), k(12, 22),
-  k(14, 2), k(14, 6), k(14, 8), k(14, 10), k(14, 12), k(14, 14), k(14, 16), k(14, 18), k(14, 22),
-  k(16, 2), k(16, 8), k(16, 10), k(16, 12), k(16, 14), k(16, 16), k(16, 22),
-  k(18, 4), k(18, 10), k(18, 12), k(18, 14), k(18, 20),
-  k(20, 6), k(20, 18),
-  k(22, 8), k(22, 10), k(22, 12), k(22, 14), k(22, 16)
-]);
-
-const HOME_DOTS = new Set([
-  k(16, 2), k(16, 4), k(12, 4),
-  k(10, 6), k(12, 6), k(14, 6),
-  k(8, 8), k(10, 8), k(12, 8), k(14, 8), k(16, 8),
-  k(6, 10), k(8, 10), k(10, 10), k(12, 10), k(14, 10), k(16, 10), k(18, 10),
-  k(6, 12), k(8, 12), k(16, 12), k(18, 12),
-  k(6, 14), k(8, 14), k(16, 14), k(18, 14),
-  k(6, 16), k(8, 16), k(16, 16), k(18, 16),
-  k(6, 18), k(8, 18), k(16, 18), k(18, 18),
-  k(6, 20), k(8, 20), k(10, 20), k(12, 20), k(14, 20), k(16, 20), k(18, 20)
-]);
+/** The clipboard body plus its tab — the shape both copy states share. */
+const clipboard = (
+  <>
+    <path d="M6.25,2.75h-1c-1.105,0-2,.895-2,2V14.25c0,1.105,.895,2,2,2h7.5c1.105,0,2-.895,2-2V4.75c0-1.105-.895-2-2-2h-1" />
+    <rect x="6.25" y="1.25" width="5.5" height="3" rx="1" ry="1" />
+  </>
+);
 
 export function CopyClipboardIcon(props: MatrixDotIconProps) {
-  return <MatrixDotIcon {...props} active={COPY_DOTS} />;
+  return <IconFrame {...props}>{clipboard}</IconFrame>;
 }
 
+/**
+ * The copied state: the same clipboard with a tick struck through it, so the
+ * outline holds still and only the check arrives.
+ */
 export function CheckIcon(props: MatrixDotIconProps) {
-  return <MatrixDotIcon {...props} active={CHECK_DOTS} />;
+  return (
+    <IconFrame {...props}>
+      {clipboard}
+      <polyline points="6.25 10.25 8 12.25 11.75 7.25" />
+    </IconFrame>
+  );
 }
 
-export function ThemeMatrixIcon(props: MatrixDotIconProps) {
-  return <MatrixDotIcon {...props} active={THEME_DOTS} />;
+/* ----------------------------------------------------------------------------
+   The two header-chrome icons are line art rather than dot matrices. They keep
+   the MatrixDotIconProps signature so the call sites are unchanged, and draw in
+   currentColor — the supplied artwork hardcoded #1c1f21, which would have gone
+   invisible against the dark theme.
+---------------------------------------------------------------------------- */
+
+export function ThemeMatrixIcon({ className, size = 18 }: MatrixDotIconProps) {
+  return (
+    <svg
+      className={className}
+      width={size}
+      height={size}
+      viewBox="0 0 18 18"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden
+    >
+      <path d="M9,6v6c1.657,0,3-1.343,3-3s-1.343-3-3-3Z" fill="currentColor" />
+      <path
+        d="M9,12c-1.657,0-3-1.343-3-3s1.343-3,3-3V1.75C4.996,1.75,1.75,4.996,1.75,9s3.246,7.25,7.25,7.25v-4.25Z"
+        fill="currentColor"
+      />
+      <circle
+        cx="9"
+        cy="9"
+        r="7.25"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
 }
 
-export function HomeMatrixIcon(props: MatrixDotIconProps) {
-  return <MatrixDotIcon {...props} active={HOME_DOTS} />;
+export function HomeMatrixIcon({ className, size = 18 }: MatrixDotIconProps) {
+  return (
+    <svg
+      className={className}
+      width={size}
+      height={size}
+      viewBox="0 0 18 18"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden
+    >
+      <path
+        d="M9 16V12.75"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M3.145 5.95L8.395 1.96C8.753 1.688 9.248 1.688 9.605 1.96L14.855 5.95C15.104 6.139 15.25 6.434 15.25 6.746V14.25C15.25 15.355 14.355 16.25 13.25 16.25H4.75C3.645 16.25 2.75 15.355 2.75 14.25V6.746C2.75 6.433 2.896 6.139 3.145 5.95Z"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
 }
 
 export type ShadcnPackageManager = "npm" | "yarn" | "bun" | "pnpm";

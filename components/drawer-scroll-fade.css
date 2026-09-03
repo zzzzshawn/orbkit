@@ -1,0 +1,44 @@
+/* ----------------------------------------------------------------------------
+   Bottom fade for the drawer's scrolling column.
+
+   Same idea as dashboardcn's `scroll-fade-b` utility: a scroll-driven
+   animation on `scroll(y)` that retracts the fade as the scroller reaches its
+   end. That utility masks the SCROLLER itself, though, and the progressive
+   blur here is a pair of overlay siblings stacked over the panel — masking the
+   scroller would throw the blur away. So the timeline is named on the scroller
+   and re-published to the panel with `timeline-scope`, which lets the overlays
+   animate off a scroller they are not inside of.
+
+   Content that does not overflow has no scrollable range, so the animation
+   sits at its end state and the blur is simply absent — which is what you
+   want: nothing to scroll, nothing to hint at.
+---------------------------------------------------------------------------- */
+
+@supports (animation-timeline: scroll()) {
+  .drawer-scroll-source {
+    scroll-timeline-name: --drawer-body;
+    scroll-timeline-axis: y;
+  }
+
+  .drawer-scroll-scope {
+    timeline-scope: --drawer-body;
+  }
+
+  @keyframes drawer-bottom-fade-out {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  .drawer-bottom-fade {
+    animation: drawer-bottom-fade-out 1ms linear;
+    animation-timeline: --drawer-body;
+    /* Retract over the last 6rem of travel rather than snapping at the very
+       end, so arriving at the bottom reads as the blur lifting. */
+    animation-range: calc(100% - 6rem) 100%;
+    animation-fill-mode: both;
+  }
+}

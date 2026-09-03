@@ -4,49 +4,301 @@
   "homepage": "https://orba.zzzzshawn.cloud",
   "items": [
     {
-      "name": "orb-hydrogen",
+      "name": "shdr-01",
       "type": "registry:ui",
-      "title": "Hydrogen",
-      "description": "A quantum-orbital orb: |psi|^2 of a hydrogen-like wave function projected onto a rotating dome, shaded with rainbow chromatic bands over dark metal. Precession and a drifting flow field keep the pattern from ever visibly looping.",
+      "title": "SHDR-01",
+      "description": "A cut-glass orb whose own shell does the dispersing: rays grazing the turbulence-warped sphere ride it for a long arc so the limb glows, interior sheets split into rainbow striations through per-channel palette phases, and an analytic silhouette keeps the edge knife-sharp.",
       "dependencies": [],
       "registryDependencies": [],
-      "url": "/r/orb-hydrogen.json"
+      "url": "/r/shdr-01.json"
     },
     {
-      "name": "orb-corona",
+      "name": "shdr-02",
       "type": "registry:ui",
-      "title": "Corona",
-      "description": "A raymarched SDF shell with volumetric godrays: the space between a sine-warped sphere and a plain one, lit only by light accumulated along each ray as it passes through the hollow.",
-      "dependencies": [],
-      "registryDependencies": [],
-      "url": "/r/orb-corona.json"
-    },
-    {
-      "name": "orb-nimbus",
-      "type": "registry:ui",
-      "title": "Nimbus",
-      "description": "Light diffusing through a cloud: a true volumetric march with Beer-Lambert transmittance, a second march toward the light for self-shadowing, and a Henyey-Greenstein phase function that blooms the lit limb.",
-      "dependencies": [],
-      "registryDependencies": [],
-      "url": "/r/orb-nimbus.json"
-    },
-    {
-      "name": "orb-rocaille",
-      "type": "registry:ui",
-      "title": "Rocaille",
+      "title": "SHDR-02",
       "description": "Ornate scrollwork wrapped onto a sphere: ten colour layers, each folded by a nine-step feedback warp, sampled through a stereographic projection of the orb's dome so the filigree compresses toward the rim.",
       "dependencies": [],
       "registryDependencies": [],
-      "url": "/r/orb-rocaille.json"
+      "url": "/r/shdr-02.json"
     },
     {
-      "name": "orb-quasar",
+      "name": "shdr-03",
       "type": "registry:ui",
-      "title": "Quasar",
-      "description": "A Rodrigues-swept core seen through frosted, dispersive glass: an analytic ray/sphere intersection gives an exact normal, jittered for frost and refracted at three indices, so the caustics inside split into rainbow fringes.",
+      "title": "SHDR-03",
+      "description": "A turbulent belt of light girdling the ball, contoured in rainbow along its own distance field: the density is a sphere plus a plane added together, so only their intersection lights up — a great circle dragged out of true by eight octaves of warp. The shell term reads the raw point and the plane term reads the warped one, which is what keeps the ball a clean sphere while the belt writhes across it, and the rotation axis is steered by the previous step's density, so the belt's tilt settles as the ray closes on the surface.",
       "dependencies": [],
       "registryDependencies": [],
-      "url": "/r/orb-quasar.json"
+      "url": "/r/shdr-03.json"
+    },
+    {
+      "name": "shdr-04",
+      "type": "registry:ui",
+      "title": "SHDR-04",
+      "description": "A hollow shell of light, faceted by a voxel lattice and approached but never reached: the march sphere-traces a shell at a tenth of the remaining distance per step, so it closes on the surface asymptotically from outside and the accumulated one-over-step is dominated by the last few samples. All six turbulence octaves quantize on the SAME fixed lattice pitch — only the phase multiplier changes — so the displacement is piecewise constant and the shell facets at one crisp scale rather than fractally. Position paints the colour, washing toward a white floor with depth.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "url": "/r/shdr-04.json"
+    },
+    {
+      "name": "shdr-05",
+      "type": "registry:ui",
+      "title": "SHDR-05",
+      "description": "Rainbow rings travelling through a lattice of lenses: componentwise tangent has a pole every PI, so the plane is cut into a square lattice of cells whose walls throw the coordinate to infinity, and adding the position back to its own tangent offsets every cell so each shows a different part of the ring field instead of tiling one image. One cosine of the length of that, at three channel phases under a radian apart, gives white band cores with coloured shoulders — and the tangent is softened so the rings crowd to a finite limit at the walls rather than to unbounded bandwidth no supersampling could resolve.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "url": "/r/shdr-05.json"
+    },
+    {
+      "name": "shdr-06",
+      "type": "registry:ui",
+      "title": "SHDR-06",
+      "description": "A hundred glowing lattices stacked through the depth of the ball, interfering: each layer is a rectangular grid of points lit by the reciprocal of a sine field, seeded with its own frequency pair, and the beat between their spacings is the image. The layers are projected from the point the view ray reaches at each depth, closed-form, so parallax is zero at the centre and strongest at the limb and the stack shears against itself as it drifts. Hue runs with layer index, so depth through the stack reads as colour.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "url": "/r/shdr-06.json"
+    },
+    {
+      "name": "shdr-07",
+      "type": "registry:ui",
+      "title": "SHDR-07",
+      "description": "A twist wave travelling out through the ball, wound around a lit polar column: an exact Rodrigues rotation whose angle is the sample's own radius minus the clock, so every spherical shell is wound by a different amount and the winding travels outward — torsion in the literal sense, twist per unit radius. The density is measured from the twist axis rather than from the centre, so the step collapses along the pole and the axis burns as a spine, and the march colour-codes itself with green by depth and blue by step index.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "url": "/r/shdr-07.json"
+    },
+    {
+      "name": "shdr-08",
+      "type": "registry:ui",
+      "title": "SHDR-08",
+      "description": "Mother-of-pearl wrapped around the ball: a ten-octave feedback warp whose octaves each boil at their own multiple of the clock, banded by the cotangent of the warped coordinate so crests saturate flat and valleys floor to black, with the layers sampled through a stereographic projection of the dome so they compress toward the limb. Every band carries its own hue from a cosine palette keyed to the band coordinate, rotated further by the viewing angle the way thin-film interference actually behaves, and the golfed listing's uneven per-channel phase breaks each band edge into a warm shoulder and a deep blue one.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "url": "/r/shdr-08.json"
+    },
+    {
+      "name": "shdr-09",
+      "type": "registry:ui",
+      "title": "SHDR-09",
+      "description": "Torn rings of rainbow light worn as the ball's own latitudes: ten concentric rings, each re-warping the original point through its own cell-quantized distortion so they tear differently instead of nesting, with an asymmetric falloff that lights every ring's outer shoulder three times as hard as its inner one. The hue phase divides by the distance to the ring, so a full rainbow compresses into a fringe exactly where the glow peaks. Radius maps to the polar angle rather than through a stereographic wrap, which foreshortens the rings exactly and lets the dome roll freely.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "url": "/r/shdr-09.json"
+    },
+    {
+      "name": "shdr-10",
+      "type": "registry:ui",
+      "title": "SHDR-10",
+      "description": "A lattice of light knitted into the ball's own skin: the listing's tunnel unwrap rewrites each sample as angle, height and radius-minus-shell, and reading that radius from the centre rather than from an axis turns its pipe into a sphere without another line changing. The density is small only where all three cosines of the unwrapped point sit at one AND the sample is on the shell, so a 3D lattice is cut by the ball's surface and what survives is a knitted net. Every march step carries its own warp and colour phase, so forty samples layer into gauze instead of stacking one surface forty times.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "url": "/r/shdr-10.json"
+    },
+    {
+      "name": "shdr-11",
+      "type": "registry:ui",
+      "title": "SHDR-11",
+      "description": "A quantum-orbital orb: |psi|^2 of a hydrogen-like wave function projected onto a rotating dome, shaded with rainbow chromatic bands over dark metal. Precession and a drifting flow field keep the pattern from ever visibly looping.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "url": "/r/shdr-11.json"
+    },
+    {
+      "name": "shdr-12",
+      "type": "registry:ui",
+      "title": "SHDR-12",
+      "description": "A ball built from glossy toy bricks: a DDA march through a staggered brickwork lattice — layers alternate their bond direction and every course staggers by a hashed offset, so seams never stack — with studs embossed on every upward face, joints drawn only on true brick boundaries, five tunable plastic colours slidable from per-brick confetti to big moulded patches, and a white Blinn sheen. Thinking blinks bricks out of the outer courses and back, the ball visibly rebuilding itself; speaking snaps it whole, fast and glossy.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "url": "/r/shdr-12.json"
+    },
+    {
+      "name": "shdr-13",
+      "type": "registry:ui",
+      "title": "SHDR-13",
+      "description": "A plasma globe: pink-to-violet lightning filaments crawling from a hot nucleus to the glass, built as the joint zero set of two animated fields over the direction sphere — so every streamer is genuinely radial, stays rooted while its far end wanders, and flares where it lands on the shell. More streamers grow in as the agent gets louder.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "url": "/r/shdr-13.json"
+    },
+    {
+      "name": "shdr-14",
+      "type": "registry:ui",
+      "title": "SHDR-14",
+      "description": "A lit plasma dome quantized to chunky two-tone pixels: lambert light, drifting fbm plasma and a fresnel rim collapse into one luminance, and an 8x8 ordered Bayer matrix — generated procedurally, since GLSL ES 1.0 has neither array initializers nor bitwise ops — snaps it onto a short ink-to-paper tone ladder. Two steps is the classic 1-bit look.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "url": "/r/shdr-14.json"
+    },
+    {
+      "name": "shdr-15",
+      "type": "registry:ui",
+      "title": "SHDR-15",
+      "description": "An iridescent particle-track web worn as the ball's skin: ten micro-layers anchored analytically to the sphere's entry point, a minus-90-degree Rodrigues rotation whose axis jitters per layer through field-magnitude feedback, and a march that sticks on concentric field shells where 1/d blows up into bright threads.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "url": "/r/shdr-15.json"
+    },
+    {
+      "name": "shdr-16",
+      "type": "registry:ui",
+      "title": "SHDR-16",
+      "description": "Sunlight through water: a caustic net crawling over the ball. Two crossed families of crest lines, their crossings added back so the foci burn hottest, read through a three-octave sine fold that refracts the net rather than scrolling it, and mapped triplanar so the ball can turn forever with no pole and no seam. The net is sampled at three moments, one per channel, so edges fringe into colour only where they move. A surge on an integrated clock lifts gain and ripple depth together. Thinking runs fast, thin and cold; speaking heaves in long gold breaths on wine-dark water.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "url": "/r/shdr-16.json"
+    },
+    {
+      "name": "shdr-17",
+      "type": "registry:ui",
+      "title": "SHDR-17",
+      "description": "A grainy, many-coloured storm raging on the ball: two-level domain-warped fbm on a stereographic wrap of a rotating dome, jovian band shear flowing latitude rings past each other, a four-stop palette with an iridescent cosine rainbow multiplied over it, hashed lightning strikes that strobe while the agent speaks, and two taps of animated white noise — one dithering the gradient into speckle, one as plain film grain.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "url": "/r/shdr-17.json"
+    },
+    {
+      "name": "shdr-18",
+      "type": "registry:ui",
+      "title": "SHDR-18",
+      "description": "A crystal folded out of one eighth of space, tumbling: an absolute value on the sample reflects all eight octants together and a component-wise max against its own rolled swizzle creases the diagonals, so the field carries the full symmetry of an octahedron without a single mirror plane being written down. Both folds happen after an exact minus-90-degree Rodrigues rotation about an axis that wanders on the clock, so the mirror planes are carried around with it and the crystal genuinely tumbles rather than being a static mandala with a moving texture. Depth along the ray paints the hue.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "url": "/r/shdr-18.json"
+    },
+    {
+      "name": "shdr-19",
+      "type": "registry:ui",
+      "title": "SHDR-19",
+      "description": "A dot screen wrapped on the ball, every dot breathing on its own phase: a cellular field where nine neighbours each get a jittered feature point and a radius generated by a dot of a cosine against a detuned swizzled sine of the cell index, so sizes cluster and cells with a negative radius simply hold none. The union is taken over coverage rather than over the signed distance the listing maxes, which is what keeps every disc whole instead of letting a neighbour bite a straight edge out of it, and the signed distance is scaled hard for a rim of about a pixel. An optional bead mode reads the winning cell as a hemisphere and lights it.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "url": "/r/shdr-19.json"
+    },
+    {
+      "name": "shdr-20",
+      "type": "registry:ui",
+      "title": "SHDR-20",
+      "description": "A water film rushing down the ball, fountain-style: vertically squashed cos-octave turbulence scrolls at nine times the clock for the fall rush, a foam blend keeps only a third of the displacement, and the original's sigmoid cliff face is swapped for the sphere's own shell with a traveling ripple.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "url": "/r/shdr-20.json"
+    },
+    {
+      "name": "shdr-21",
+      "type": "registry:ui",
+      "title": "SHDR-21",
+      "description": "Light diffusing through a cloud: a true volumetric march with Beer-Lambert transmittance, a second march toward the light for self-shadowing, and a Henyey-Greenstein phase function that blooms the lit limb.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "url": "/r/shdr-21.json"
+    },
+    {
+      "name": "shdr-22",
+      "type": "registry:ui",
+      "title": "SHDR-22",
+      "description": "Field lines swirling around the ball about a slowly wandering axis: an exact 90-degree Rodrigues rotation forks into a clean streak field and a cell-quantized turbulent one, their product drawn as density, with the march itself colour-coded — red cores, green by step, blue by depth.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "url": "/r/shdr-22.json"
+    },
+    {
+      "name": "shdr-23",
+      "type": "registry:ui",
+      "title": "SHDR-23",
+      "description": "An ASCII glyph matrix in CRT green, wrapped on the ball: a resolution-relative grid of woven dash characters whose lit-row count quantizes a streaming fbm field — exactly how ASCII art shades — with blocky dropouts eaten out of the matrix on a coarser super-grid, a stereographic wrap that rolls the weave around the sphere, and a phosphor ramp from deep green to hot glow.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "url": "/r/shdr-23.json"
+    },
+    {
+      "name": "shdr-24",
+      "type": "registry:ui",
+      "title": "SHDR-24",
+      "description": "A Minecraft Earth: a voxel planet marched block by block, its ground a perfect sphere with oceans flush on it and mountains, forests and deserts rising above. An integrated season clock weathers the whole world through five climates — lush, cherry grove (flat pink blossom puffs over vivid meadows), ice (packed-ice spires, glacier patches, frozen seas), mesa (big terraced terracotta towers, red sand, cacti) and desert; the deep stone runs clustered ore veins whose texture flecks glow, and caves warm toward a molten core that blazes as the agent speaks. Thinking streams the terrain and races the seasons, so continents morph like chunks loading.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "url": "/r/shdr-24.json"
+    },
+    {
+      "name": "shdr-25",
+      "type": "registry:ui",
+      "title": "SHDR-25",
+      "description": "The folds of a warped field, drawn by their own steepness: nothing here draws a shape — it measures how fast a rippled field changes from one pixel to the next, so where eight octaves of warp have folded the plane onto itself the field races and those folds come out as bright filigree. The octave transform is an exact similarity hidden in integers, a rotation through the 3-4-5 angle times a scale of ten ninths, and because fwidth needs a WebGL 1 extension that cannot follow the prelude the derivative is taken by finite differences instead — three evaluations of the chain, and truer than the built-in's per-quad constant.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "url": "/r/shdr-25.json"
+    },
+    {
+      "name": "shdr-26",
+      "type": "registry:ui",
+      "title": "SHDR-26",
+      "description": "A crazed web of coloured threads knotted to a cell grid: a nine-octave feedback warp carrying a lattice pole term, so the field flows through cell interiors and tears itself around every cell corner, banded by an exponential ridge function that draws a thin bright thread every PI over a lit floor. The per-channel phase is a large fraction of a thread that narrow, so each one separates into three coloured filaments running in parallel, and a fourth-power read of the same ridge lays a white-hot core inside them.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "url": "/r/shdr-26.json"
+    },
+    {
+      "name": "shdr-27",
+      "type": "registry:ui",
+      "title": "SHDR-27",
+      "description": "A weather-radar mosaic on the ball: the sphere is twisted by hashed vortices, each a rotation about the axis through it with a Gaussian falloff, and two scales of 3D noise are read through the twist and multiplied, so storm systems wind into spirals with concentric legend rings and drift on the clock. The dome is cut into a pixel grid that never rolls, each cell centre is inverse-projected onto the sphere and read once, so every dot is one flat colour from a seven-class radar legend — grey, blue, cyan, green, red, yellow, magenta — with the class boundaries dithered by a per-cell hash and the quiet areas thinned to a sparse twinkling scatter on cream paper.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "url": "/r/shdr-27.json"
+    },
+    {
+      "name": "shdr-28",
+      "type": "registry:ui",
+      "title": "SHDR-28",
+      "description": "Nested binary grids shuttering on a tumbling bit-sphere: a twenty-level power-of-two zoom wrapped onto the ball through a stereographic projection, cell edges drawn with an analytic pixel footprint instead of fwidth, and an animated per-cell shutter that lets each grid level occlude the ones beneath.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "url": "/r/shdr-28.json"
+    },
+    {
+      "name": "shdr-29",
+      "type": "registry:ui",
+      "title": "SHDR-29",
+      "description": "An LED tile wall lighting up in flowing blobs, wrapped on the ball: every cell is a bevelled tile that keeps a faint dark presence when unlit, a streaming fbm field decides which tiles light through the stereographic wrap of a rotating dome, and a per-tile hash promotes a reshuffling scattering of lit tiles to fully saturated confetti hues.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "url": "/r/shdr-29.json"
+    },
+    {
+      "name": "shdr-30",
+      "type": "registry:ui",
+      "title": "SHDR-30",
+      "description": "A flower meadow folding into itself, falling forever toward a blue vanishing point: the log of the Chebyshev norm turns nested square frames into a continuous index, so every fragment maps back into one base picture and that picture contains itself. Sky, cloud, canopy, water and hashed flowers are painted in base-frame coordinates so the same weather repeats at every scale, the wall smear falls out of sampling the land noise on distance-around-the-frame against frame index, and aerial haze keyed to the screen radius makes the middle read as far away rather than merely small.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "url": "/r/shdr-30.json"
+    },
+    {
+      "name": "shdr-31",
+      "type": "registry:ui",
+      "title": "SHDR-31",
+      "description": "A raymarched SDF shell with volumetric godrays: the space between a sine-warped sphere and a plain one, lit only by light accumulated along each ray as it passes through the hollow.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "url": "/r/shdr-31.json"
+    },
+    {
+      "name": "shdr-32",
+      "type": "registry:ui",
+      "title": "SHDR-32",
+      "description": "A galaxy marched as a volume of gas and dust inside the ball: a flared exponential disc under a Gaussian bulge, modulated by log-spiral arms and broken into filaments by four octaves of feedback-curl turbulence, accumulated front-to-back with a blue-weighted extinction so thick gas reddens what lies behind it — the dust lanes fall out of the physics. Hashed stars sit at each ray's exact hit with the galactic plane, veiled by the dust in front of them. The disc tips between states: a calm three-quarter spiral at rest, a face-on boiling whirlpool while searching, a face-on flaring spiral breathing on the beat while answering.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "url": "/r/shdr-32.json"
+    },
+    {
+      "name": "shdr-33",
+      "type": "registry:ui",
+      "title": "SHDR-33",
+      "description": "A thermal image put through a cheap colour print, wrapped on the ball: rounded-box heat sources drift across the plane as plateaus with exponential skirts, their sum saturates to white where they overlap and is quantized into the nested rectangular contours of a false-colour ramp, then the palette is separated into cyan, magenta and yellow and laid down as three misregistered screens of square dots on grainy paper — violet where cyan crosses magenta, orange where magenta crosses yellow, paper showing through the hot cores.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "url": "/r/shdr-33.json"
     },
     {
       "name": "all",

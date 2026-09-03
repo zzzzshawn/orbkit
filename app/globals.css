@@ -30,19 +30,51 @@
   --color-code-bg: var(--color-code-bg);
   --color-border: var(--color-border);
   --color-border-soft: var(--color-border-soft);
+  --color-code-literal: var(--color-code-literal);
+  --color-code-keyword: var(--color-code-keyword);
+  --color-code-type: var(--color-code-type);
+  --color-code-ident: var(--color-code-ident);
+  --color-code-comment: var(--color-code-comment);
+  --color-dot-on: var(--color-dot-on);
+  --color-dot-off: var(--color-dot-off);
+  --color-dot-faint: var(--color-dot-faint);
   --color-shell: var(--color-shell);
   --color-shell-overlay: var(--color-shell-overlay);
   --color-backdrop: var(--color-backdrop);
   --color-spotlight: var(--color-spotlight);
 
-  /* Default UI font: Geist Pixel Circle (variable set on <body> by next/font). */
-  --font-sans: var(--font-geist-pixel-circle), ui-sans-serif, system-ui, sans-serif;
+  /*
+   * Default UI font: Public Sans (variable, self-hosted by next/font).
+   *
+   * Resolved through the variable next/font generates, which is set on <html>
+   * alongside this declaration — a var() inside a custom property resolves on
+   * the element it is DECLARED on, so a font variable parked further down the
+   * tree would leave this invalid and empty.
+   */
+  --font-sans:
+    var(--font-public-sans), -apple-system, BlinkMacSystemFont, ui-sans-serif,
+    system-ui, "Segoe UI", Roboto, sans-serif;
 
   --font-pixel-square: var(--font-geist-pixel-square);
   --font-pixel-grid: var(--font-geist-pixel-grid);
   --font-pixel-circle: var(--font-geist-pixel-circle);
   --font-pixel-triangle: var(--font-geist-pixel-triangle);
   --font-pixel-line: var(--font-geist-pixel-line);
+
+  /* Close-button cross dots: CSS-driven so it survives parent compositing
+     (e.g. Framer filter/blur wrappers). */
+  --animate-close-cross-dot: close-cross-dot 630ms ease-in-out infinite;
+
+  @keyframes close-cross-dot {
+    0%,
+    100% {
+      opacity: 0.2;
+    }
+
+    45% {
+      opacity: 1;
+    }
+  }
 }
 
 @layer base {
@@ -64,7 +96,7 @@
   --background: #000000;
   --foreground: #fafafa;
   --muted-foreground: #a1a1aa;
-  --preset: #202020;
+  --preset: #191919;
 
   --color-bg: #000000;
   --color-fg-strong: #fafafa;
@@ -80,10 +112,29 @@
   --color-border-soft: rgba(255, 255, 255, 0.08);
   --color-link: #f4f4f5;
   --color-link-hover: #ffffff;
+  /* THE code palette. lib/orba-code-theme.ts hands these straight to Shiki as
+     var() references, and lib/orb-props-reference.tsx tints its table cells
+     from them, so editing a value here moves the code blocks and the tables
+     together. Four roles: keyword, type, literal, ident. */
+  --color-code-literal: #ffffff;
+  --color-code-keyword: #4c6aff;
+  --color-code-type: #2efee6;
+  --color-code-ident: #707070;
+  --color-code-comment: #5a5a5a;
+  --color-dot-on: #f4f4f5;
+  --color-dot-off: #52525b;
+  --color-dot-faint: rgba(255, 255, 255, 0.1);
   --color-shell: rgba(0, 0, 0, 0.5);
   --color-shell-overlay: rgba(0, 0, 0, 0.2);
   --color-backdrop: rgba(0, 0, 0, 0.7);
   --color-spotlight: rgba(255, 255, 255, 0.08);
+
+  --drawer-fade: linear-gradient(
+    to top,
+    rgba(12, 12, 12, 0.85),
+    rgba(12, 12, 12, 0.35),
+    transparent
+  );
 
   --orb-card-glow: radial-gradient(
     120% 120% at 50% 50%,
@@ -94,17 +145,17 @@
 }
 
 :root[data-theme="light"] {
-  --background: #f4f4f4;
+  --background: #fafafa;
   --foreground: #050505;
   --muted-foreground: #5e5e55;
-  --preset: #eaeaea;
+  --preset: #f0f0f0;
 
   --color-bg: #ffffff;
   --color-fg-strong: #050505;
   --color-fg: #1b1b18;
   --color-fg-muted: #5e5e55;
   --color-fg-dim: #8e8e85;
-  --color-surface: #ececec;
+  --color-surface: #ffffff;
   --color-surface-soft: #f3f3f3;
   --color-surface-muted: #e8e8e8;
   --color-surface-raised: #dfdfdf;
@@ -113,10 +164,25 @@
   --color-border-soft: rgba(0, 0, 0, 0.08);
   --color-link: #0b0b0a;
   --color-link-hover: #000000;
+  --color-code-literal: #111111;
+  --color-code-keyword: #2861ff;
+  --color-code-type: #00c4ad;
+  --color-code-ident: #808080;
+  --color-code-comment: #9a9a9a;
+  --color-dot-on: #0b0b0a;
+  --color-dot-off: #adada4;
+  --color-dot-faint: rgba(0, 0, 0, 0.1);
   --color-shell: rgba(255, 255, 255, 0.5);
   --color-shell-overlay: rgba(255, 255, 255, 0.2);
   --color-backdrop: rgba(255, 255, 255, 0.7);
   --color-spotlight: rgba(0, 0, 0, 0.08);
+
+  --drawer-fade: linear-gradient(
+    to top,
+    rgba(243, 243, 243, 0.85),
+    rgba(243, 243, 243, 0.35),
+    transparent
+  );
 
   --orb-card-glow: radial-gradient(
     120% 120% at 50% 50%,

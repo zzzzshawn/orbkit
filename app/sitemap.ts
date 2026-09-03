@@ -12,6 +12,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: url("/getting-started/introduction"), priority: 0.7 },
     { url: url("/getting-started/usage"), priority: 0.7 },
     { url: url("/getting-started/manual"), priority: 0.6 },
+    { url: url("/agents"), priority: 0.7 },
+    { url: url("/developers"), priority: 0.6 },
+    { url: url("/llms.txt"), priority: 0.6 },
+    { url: url("/agents.md"), priority: 0.5 },
+    { url: url("/skill.md"), priority: 0.5 },
+    { url: url("/skill/recipes.md"), priority: 0.4 },
+    { url: url("/openapi.json"), priority: 0.4 },
     ...orbRegistry.map((orb) => ({
       url: url(`/playground?orb=${orb.slug}`),
       priority: 0.5

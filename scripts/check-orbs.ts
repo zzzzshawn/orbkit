@@ -21,7 +21,22 @@ import { readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 
 const ORBS_DIR = path.join(process.cwd(), "orbs", "orbs");
-const STATES = ["idle", "listening", "thinking", "speaking"];
+const STATES = ["idle", "thinking", "speaking"];
+
+/**
+ * The text of one top-level object literal (`statePresets`, `stateColors`),
+ * found by brace matching from the key. Returns "" when the orb omits it.
+ */
+function sliceRegion(source: string, key: string): string {
+  const at = source.indexOf(`${key}: {`);
+  if (at === -1) return "";
+  let depth = 0;
+  for (let i = source.indexOf("{", at); i < source.length; i++) {
+    if (source[i] === "{") depth++;
+    else if (source[i] === "}" && --depth === 0) return source.slice(at, i + 1);
+  }
+  return source.slice(at);
+}
 
 interface Problem {
   file: string;
@@ -93,16 +108,31 @@ for (const file of readdirSync(ORBS_DIR).sort()) {
     }
   }
 
-  for (const preset of source.matchAll(
-    new RegExp(`(${STATES.join("|")}):\\s*\\{([^}]*)\\}`, "g")
-  )) {
-    for (const key of [...preset[2].matchAll(/(\w+):/g)].map((m) => m[1])) {
-      if (!paramKeys.includes(key)) {
-        problems.push({
-          file,
-          kind: "STALE",
-          detail: `preset ${preset[1]} sets "${key}", which is not in params`
-        });
+  /*
+   * State blocks are checked against the right table: `statePresets` entries
+   * must name params, `stateColors` entries must name colors. Slicing the two
+   * regions apart first matters — scanning the whole file would report every
+   * colour override as a stale param, and would let a genuinely misspelled
+   * colour key through as if it were fine.
+   */
+  const presetsRegion = sliceRegion(source, "statePresets");
+  const colorsRegion = sliceRegion(source, "stateColors");
+
+  for (const [region, keys, table] of [
+    [presetsRegion, paramKeys, "params"],
+    [colorsRegion, colorKeys, "colors"]
+  ] as const) {
+    for (const preset of region.matchAll(
+      new RegExp(`(${STATES.join("|")}):\\s*\\{([^}]*)\\}`, "g")
+    )) {
+      for (const key of [...preset[2].matchAll(/(\w+):/g)].map((m) => m[1])) {
+        if (!keys.includes(key)) {
+          problems.push({
+            file,
+            kind: "STALE",
+            detail: `${preset[1]} sets "${key}", which is not in ${table}`
+          });
+        }
       }
     }
   }

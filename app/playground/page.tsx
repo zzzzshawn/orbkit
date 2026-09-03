@@ -11,13 +11,14 @@ export const metadata: Metadata = {
 export default async function PlaygroundPage({
   searchParams
 }: {
-  searchParams: Promise<{ orb?: string }>;
+  searchParams: Promise<{ orb?: string; state?: string }>;
 }) {
-  const { orb } = await searchParams;
+  const { orb, state } = await searchParams;
 
   return (
     <PlaygroundClient
       initialSlug={orb}
+      initialState={state}
       orbs={orbRegistry.map((entry) => ({
         slug: entry.slug,
         title: entry.title,

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default function IntroductionPage() {
-  const firstSlug = orbRegistry[0]?.slug ?? "orb-hydrogen";
+  const firstSlug = orbRegistry[0]?.slug ?? "shdr-11";
 
   return (
     <DocsShell
@@ -44,9 +44,9 @@ export default function IntroductionPage() {
 
       <DocsSection heading="Install">
         <p>Add an orb through the shadcn CLI. The shared runtime comes along automatically.</p>
-        <DocsCode>{shadcnAddCommand(firstSlug)}</DocsCode>
+        <DocsCode lang="bash">{shadcnAddCommand(firstSlug)}</DocsCode>
         <p className="text-fg-muted">Or install every orb at once:</p>
-        <DocsCode>{shadcnAddCommand("all")}</DocsCode>
+        <DocsCode lang="bash">{shadcnAddCommand("all")}</DocsCode>
       </DocsSection>
 
       <DocsSection heading="Agent states">
@@ -60,10 +60,7 @@ export default function IntroductionPage() {
             <code>idle</code> — calm, slow drift.
           </li>
           <li>
-            <code>listening</code> — restless, wide chroma, pulsing with the user&apos;s voice.
-          </li>
-          <li>
-            <code>thinking</code> — the same restless motion with a slower wander.
+            <code>thinking</code> — restless motion with a slow wander.
           </li>
           <li>
             <code>speaking</code> — fast, bright, strongly precessing.
