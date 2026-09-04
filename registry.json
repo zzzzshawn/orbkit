@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
-  "name": "@orba",
-  "homepage": "https://orba.zzzzshawn.cloud",
+  "name": "@orbkit",
+  "homepage": "https://orbkit.zzzzshawn.cloud",
   "items": [
     {
       "name": "shdr-01",
@@ -303,7 +303,7 @@
     {
       "name": "all",
       "type": "registry:ui",
-      "title": "All Orba Orbs",
+      "title": "All Orbkit Orbs",
       "description": "Installs every orb and the shared WebGL runtime in one command.",
       "dependencies": [],
       "registryDependencies": [],

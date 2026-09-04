@@ -4,7 +4,7 @@
  * Note for editors: the shader lives in a template literal, so its comments
  * must not contain backticks.
  */
-import { ShaderOrb, type OrbVariant, type ShaderOrbProps } from "../core/orba-core";
+import { ShaderOrb, type OrbVariant, type ShaderOrbProps } from "../core/orbkit-core";
 
 /* ----------------------------------------------------------------------------
    SHDR-12 — a ball built from glossy toy bricks, studs up.

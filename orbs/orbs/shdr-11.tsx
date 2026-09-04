@@ -1,6 +1,6 @@
 /*
  * Deliberately not a `"use client"` module. The directive lives on the runtime
- * in `orba-core`, which owns the hooks; keeping it off this file lets server
+ * in `orbkit-core`, which owns the hooks; keeping it off this file lets server
  * components read `shdr11Orb` as real data (its param schema drives the docs
  * tables and the playground controls) instead of an opaque client reference.
  */
@@ -8,7 +8,7 @@ import {
   ShaderOrb,
   type OrbVariant,
   type ShaderOrbProps
-} from "../core/orba-core";
+} from "../core/orbkit-core";
 
 /* ----------------------------------------------------------------------------
    SHDR-11 — the quantum-orbital orb.

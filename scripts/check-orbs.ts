@@ -139,11 +139,11 @@ for (const file of readdirSync(ORBS_DIR).sort()) {
 }
 
 if (problems.length === 0) {
-  console.log(`[orba] check-orbs: ${checked} orb(s) OK`);
+  console.log(`[orbkit] check-orbs: ${checked} orb(s) OK`);
   process.exit(0);
 }
 
-console.error(`[orba] check-orbs: ${problems.length} problem(s) across ${checked} orb(s)\n`);
+console.error(`[orbkit] check-orbs: ${problems.length} problem(s) across ${checked} orb(s)\n`);
 for (const p of problems) {
   console.error(`  ${p.kind.padEnd(8)} ${p.file.padEnd(22)} ${p.detail}`);
 }

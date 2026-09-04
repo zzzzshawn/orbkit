@@ -1,7 +1,7 @@
 /*
  * Deliberately not a `"use client"` module — see the note in `shdr-11.tsx`.
  */
-import { ShaderOrb, type OrbVariant, type ShaderOrbProps } from "../core/orba-core";
+import { ShaderOrb, type OrbVariant, type ShaderOrbProps } from "../core/orbkit-core";
 
 /* ----------------------------------------------------------------------------
    SHDR-02 — ornate scrollwork wrapped onto a sphere.

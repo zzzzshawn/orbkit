@@ -4,7 +4,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { memo, useEffect, useRef, useState } from "react";
 
 import type { OrbComponent } from "@/lib/orb-component-map";
-import type { OrbState } from "@/orbs/core/orba-core";
+import type { OrbState } from "@/orbs/core/orbkit-core";
 
 export interface OrbCard {
   slug: string;

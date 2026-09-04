@@ -10,7 +10,7 @@ import {
   type ThemeMode
 } from "@/lib/use-document-theme";
 
-const THEME_TRANSITION_STYLE_ID = "orba-theme-transition-styles";
+const THEME_TRANSITION_STYLE_ID = "orbkit-theme-transition-styles";
 
 function updateTransitionStyles(css: string) {
   const existing = document.getElementById(THEME_TRANSITION_STYLE_ID);
@@ -39,10 +39,10 @@ function createThemeTransitionCss() {
     }
 
     ::view-transition-new(root) {
-      animation-name: orba-theme-reveal;
+      animation-name: orbkit-theme-reveal;
     }
 
-    @keyframes orba-theme-reveal {
+    @keyframes orbkit-theme-reveal {
       from {
         clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
       }

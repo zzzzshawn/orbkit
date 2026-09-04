@@ -10,13 +10,13 @@ import {
 } from "@/components/props-table";
 import { orbRegistry } from "@/lib/registry-config";
 import { orbVariantMap } from "@/lib/orb-component-map";
-import type { OrbWrapper } from "@/orbs/core/orba-core";
+import type { OrbWrapper } from "@/orbs/core/orbkit-core";
 import { shadcnAddCommand } from "@/lib/site-config";
 
 /*
   The wrapper names, restated rather than imported.
 
-  This page is a server component and orba-core is a "use client" module, so
+  This page is a server component and orbkit-core is a "use client" module, so
   its runtime exports arrive here as client references — `ORB_WRAPPERS` would
   be a proxy, not the array. Typed as an exhaustive Record over the union so
   the build breaks if a wrapper is ever added to the core without being listed
@@ -36,7 +36,7 @@ const WRAPPER_NAMES: Record<OrbWrapper, true> = {
 
 export const metadata: Metadata = {
   title: "Usage",
-  description: "Props, agent states, and shader parameters for Orba orbs."
+  description: "Props, agent states, and shader parameters for Orbkit orbs."
 };
 
 export default function UsagePage() {

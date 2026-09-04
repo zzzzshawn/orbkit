@@ -21,13 +21,13 @@ const allRegistryItemName = "all";
  *
  * Typed `registry:ui`, not `registry:lib`: shadcn routes files by type, not by
  * the declared path, and `registry:lib` would drop this in the consumer's `lib`
- * alias while the orb still imports `@/components/ui/orba-core` — a broken
+ * alias while the orb still imports `@/components/ui/orbkit-core` — a broken
  * import on every install. It exports a component, so `registry:ui` is right.
  */
-const CORE_TARGET_PATH = "components/ui/orba-core.tsx";
+const CORE_TARGET_PATH = "components/ui/orbkit-core.tsx";
 
 const importRewrites: ReadonlyArray<{ from: string; to: string }> = [
-  { from: "../core/orba-core", to: "@/components/ui/orba-core" }
+  { from: "../core/orbkit-core", to: "@/components/ui/orbkit-core" }
 ];
 
 function rewriteImports(source: string): string {
@@ -47,7 +47,7 @@ async function build() {
   await rm(publicRegistryDir, { recursive: true, force: true });
   await mkdir(publicRegistryDir, { recursive: true });
 
-  const coreSource = await readFile(path.join(orbsRoot, "core", "orba-core.tsx"), "utf-8");
+  const coreSource = await readFile(path.join(orbsRoot, "core", "orbkit-core.tsx"), "utf-8");
   const coreFile: RegistryFile = {
     path: CORE_TARGET_PATH,
     type: "registry:ui",
@@ -175,7 +175,7 @@ async function build() {
   );
 
   console.log(
-    `[orba] registry built: ${orbRegistry.length} orb(s) + "all" → public/r/`
+    `[orbkit] registry built: ${orbRegistry.length} orb(s) + "all" → public/r/`
   );
 }
 

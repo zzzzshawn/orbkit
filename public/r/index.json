@@ -299,7 +299,7 @@
   {
     "name": "all",
     "type": "registry:ui",
-    "title": "All Orba Orbs",
+    "title": "All Orbkit Orbs",
     "description": "Installs every orb and the shared WebGL runtime in one command.",
     "dependencies": [],
     "registryDependencies": [],

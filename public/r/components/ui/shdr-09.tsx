@@ -4,7 +4,7 @@
  * Note for editors: the shader lives in a template literal, so its comments
  * must not contain backticks.
  */
-import { ShaderOrb, type OrbVariant, type ShaderOrbProps } from "@/components/ui/orba-core";
+import { ShaderOrb, type OrbVariant, type ShaderOrbProps } from "@/components/ui/orbkit-core";
 
 /* ----------------------------------------------------------------------------
    SHDR-09 — torn rings of rainbow light, worn as the ball's own latitudes.

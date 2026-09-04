@@ -4,7 +4,7 @@ import { useSyncExternalStore } from "react";
 
 export type ThemeMode = "light" | "dark";
 
-export const THEME_STORAGE_KEY = "orba-theme";
+export const THEME_STORAGE_KEY = "orbkit-theme";
 
 /**
  * `data-theme` on <html> is the single source of truth — the inline script in

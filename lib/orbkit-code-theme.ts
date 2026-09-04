@@ -1,7 +1,7 @@
 import type { ThemeRegistrationRaw } from "shiki/bundle/web";
 
 /*
-  Orba's own highlight theme.
+  Orbkit's own highlight theme.
 
   Every colour here is a `var(--color-code-*)` rather than a hex. Shiki writes
   those straight into the inline styles it generates, so the palette lives in
@@ -29,8 +29,8 @@ const LITERAL = "var(--color-code-literal)";
 const IDENT = "var(--color-code-ident)";
 const COMMENT = "var(--color-code-comment)";
 
-export const ORBA_CODE_THEME: ThemeRegistrationRaw = {
-  name: "orba",
+export const ORBKIT_CODE_THEME: ThemeRegistrationRaw = {
+  name: "orbkit",
   type: "dark",
   colors: {
     // Never seen — ShikiCodeView forces the <pre> transparent so code sits on

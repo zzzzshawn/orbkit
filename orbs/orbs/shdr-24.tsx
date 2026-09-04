@@ -4,7 +4,7 @@
  * Note for editors: the shader lives in a template literal, so its comments
  * must not contain backticks.
  */
-import { ShaderOrb, type OrbVariant, type ShaderOrbProps } from "../core/orba-core";
+import { ShaderOrb, type OrbVariant, type ShaderOrbProps } from "../core/orbkit-core";
 
 /* ----------------------------------------------------------------------------
    SHDR-24 — a Minecraft Earth: a voxel planet with continents, oceans and

@@ -5,6 +5,9 @@
 @source "../lib/**/*.{ts,tsx}";
 @source "../orbs/**/*.{ts,tsx}";
 
+/* `light:` utilities — the root always carries data-theme, dark by default. */
+@custom-variant light (&:where([data-theme="light"], [data-theme="light"] *));
+
 @theme {
   /*
    * Bridge :root[data-theme] → Tailwind color utilities (bg-bg, text-fg-dim,
@@ -112,7 +115,7 @@
   --color-border-soft: rgba(255, 255, 255, 0.08);
   --color-link: #f4f4f5;
   --color-link-hover: #ffffff;
-  /* THE code palette. lib/orba-code-theme.ts hands these straight to Shiki as
+  /* THE code palette. lib/orbkit-code-theme.ts hands these straight to Shiki as
      var() references, and lib/orb-props-reference.tsx tints its table cells
      from them, so editing a value here moves the code blocks and the tables
      together. Four roles: keyword, type, literal, ident. */
@@ -244,22 +247,38 @@ pre {
 /* ------------------------------- DialKit ---------------------------------- */
 /* Flatten DialKit's default glass panel into the site's flat surface look. */
 
+/*
+ * The collapsed dial is styled as one more header button: the same size,
+ * radius and preset surface as the Home and theme buttons beside it (the bubble
+ * itself is styled at the end of this section). The size tracks theirs, 32px
+ * and 36px from the sm breakpoint, so the row stays flush.
+ */
+:root {
+  --header-button-size: 32px;
+  --header-button-icon: 16px;
+}
+
+@media (min-width: 640px) {
+  :root {
+    --header-button-size: 36px;
+    --header-button-icon: 20px;
+  }
+}
+
 .dialkit-panel:has(.dialkit-panel-inner[data-collapsed="true"]) {
-  width: 42px;
-  height: 42px;
-  border-radius: 12px;
-  background: var(--color-surface);
-  padding: 4px;
+  width: var(--header-button-size);
+  height: var(--header-button-size);
+  padding: 0;
   box-sizing: border-box;
 }
 
 /* Nudge the header controls left so the collapsed dial never overlaps them. */
 body[data-playground-route="true"] > .fixed.right-4.top-4 {
-  right: calc(1rem + 42px + 0.5rem);
+  right: calc(1rem + var(--header-button-size) + 0.5rem);
 }
 
 .dialkit-panel[data-position="top-right"]:not(:has(.dialkit-panel-inner[data-collapsed="true"])) {
-  top: calc(1rem + 42px + 0.5rem);
+  top: calc(1rem + var(--header-button-size) + 0.5rem);
   right: 1rem;
 }
 
@@ -267,7 +286,7 @@ body[data-playground-route="true"] > .fixed.right-4.top-4 {
 body[data-playground-route="true"]
   .dialkit-panel[data-position="top-right"]
   .dialkit-panel-inner:not([data-collapsed="true"]) {
-  max-height: calc(100dvh - 1rem - 42px - 0.5rem - 1rem);
+  max-height: calc(100dvh - 1rem - var(--header-button-size) - 0.5rem - 1rem);
   overflow-y: auto;
   overscroll-behavior: contain;
   padding-bottom: 12px !important;
@@ -395,17 +414,18 @@ body[data-playground-route="true"]
   background: var(--color-surface);
 }
 
+/* The collapsed bubble: DialKit sizes it inline, so fill the button box. */
 .dialkit-panel-inner[data-collapsed="true"] {
   position: relative;
   box-sizing: border-box;
-  width: 34px !important;
-  height: 34px !important;
+  width: var(--header-button-size) !important;
+  height: var(--header-button-size) !important;
   border: 0 !important;
-  border-radius: 8px !important;
-  background: var(--color-bg) !important;
+  border-radius: 12px !important;
+  background: var(--preset) !important;
   padding: 0 !important;
   box-shadow: none !important;
-  color: var(--foreground) !important;
+  color: var(--color-fg-strong) !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
   transition: opacity 150ms ease-out, color 150ms ease-out;
@@ -415,12 +435,17 @@ body[data-playground-route="true"]
   opacity: 0.9;
 }
 
+.dialkit-panel-inner[data-collapsed="true"]:focus-visible {
+  outline: 1px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
 .dialkit-panel-inner[data-collapsed="true"] .dialkit-panel-icon {
   left: 50% !important;
   top: 50% !important;
   right: auto !important;
-  width: 20px !important;
-  height: 20px !important;
+  width: var(--header-button-icon) !important;
+  height: var(--header-button-icon) !important;
   color: currentColor !important;
   transform: translate(-50%, -50%) !important;
 }

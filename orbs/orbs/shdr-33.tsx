@@ -4,7 +4,7 @@
  * Note for editors: the shader lives in a template literal, so its comments
  * must not contain backticks.
  */
-import { ShaderOrb, type OrbVariant, type ShaderOrbProps } from "../core/orba-core";
+import { ShaderOrb, type OrbVariant, type ShaderOrbProps } from "../core/orbkit-core";
 
 /* ----------------------------------------------------------------------------
    SHDR-33 — a thermal image, risograph-printed, wrapped on the ball.

@@ -3,8 +3,8 @@
 
    Ported from dashboardcn's payment-activity table, but reduced to the parts a
    reference table actually uses — the engraved dividers — and rewired to
-   orba's own theming. Their version ships a `useSurfaceTheme` hook that mirrors
-   `data-theme` onto the component; orba already sets that attribute on <html>,
+   orbkit's own theming. Their version ships a `useSurfaceTheme` hook that mirrors
+   `data-theme` onto the component; orbkit already sets that attribute on <html>,
    so plain CSS selectors do the same job with no JS and no hydration guard.
 
    Cell colour is deliberately NOT here: it stays on Tailwind utilities in the
@@ -16,19 +16,19 @@
    opposite highlights, hence the two blocks.
 ---------------------------------------------------------------------------- */
 
-.orba-props-table {
+.orbkit-props-table {
   --divider: oklch(0 0 0 / 11%);
   --divider-shadow: 0 1px 0 rgba(255, 255, 255, 1);
   --divider-vertical-shadow: 1px 0 0 #ffffff;
 }
 
-:root[data-theme="dark"] .orba-props-table {
+:root[data-theme="dark"] .orbkit-props-table {
   --divider: #191919;
   --divider-shadow: 0 1px 0 #ffffff14;
   --divider-vertical-shadow: 1px 0 0 #ffffff14;
 }
 
-.orba-props-table table {
+.orbkit-props-table table {
   width: 100%;
   border-collapse: collapse;
   table-layout: fixed;
@@ -36,13 +36,13 @@
 
 /* Hairline between columns, inset top and bottom so it never meets the
    horizontal rules and forms a hard cross. */
-.orba-props-table th:not(:last-child),
-.orba-props-table td:not(:last-child) {
+.orbkit-props-table th:not(:last-child),
+.orbkit-props-table td:not(:last-child) {
   position: relative;
 }
 
-.orba-props-table th:not(:last-child)::after,
-.orba-props-table td:not(:last-child)::after {
+.orbkit-props-table th:not(:last-child)::after,
+.orbkit-props-table td:not(:last-child)::after {
   content: "";
   position: absolute;
   top: 0.25rem;
@@ -56,18 +56,18 @@
 
 /* The divider is its own row rather than a border on the cells, so it spans
    the full width uninterrupted by the vertical rules above. */
-.orba-props-table-divider-cell {
+.orbkit-props-table-divider-cell {
   padding: 0;
   border: 0;
   line-height: 0;
   background: transparent;
 }
 
-.orba-props-table-divider-cell::after {
+.orbkit-props-table-divider-cell::after {
   display: none;
 }
 
-.orba-props-table-rule {
+.orbkit-props-table-rule {
   display: block;
   height: 0;
   border: 0;

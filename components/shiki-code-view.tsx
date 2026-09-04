@@ -5,10 +5,10 @@ import { AnimatePresence, motion, useReducedMotion, type Transition } from "fram
 import Scritto from "@scritto/react";
 import { useEffect, useMemo, useState } from "react";
 
-import { ORBA_CODE_THEME } from "@/lib/orba-code-theme";
+import { ORBKIT_CODE_THEME } from "@/lib/orbkit-code-theme";
 
 /*
-  One theme, both colour schemes. lib/orba-code-theme.ts colours tokens with
+  One theme, both colour schemes. lib/orbkit-code-theme.ts colours tokens with
   var(--color-code-*), which Shiki writes into the inline styles verbatim, so
   the generated HTML is already correct in light and dark — the cascade swaps
   the values. That is why there is no theme-mode state or MutationObserver
@@ -141,7 +141,7 @@ export function ShikiCodeView({
       */
       if (animateLines) {
         const { codeToTokens } = await import("shiki/bundle/web");
-        const { tokens } = await codeToTokens(code, { lang, theme: ORBA_CODE_THEME });
+        const { tokens } = await codeToTokens(code, { lang, theme: ORBKIT_CODE_THEME });
         if (cancelled) return;
         setHighlight({
           tokens,
@@ -150,7 +150,7 @@ export function ShikiCodeView({
         return;
       }
       const { codeToHtml } = await import("shiki/bundle/web");
-      const next = await codeToHtml(code, { lang, theme: ORBA_CODE_THEME });
+      const next = await codeToHtml(code, { lang, theme: ORBKIT_CODE_THEME });
       if (!cancelled) setHtml(next);
     })();
     return () => {

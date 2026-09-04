@@ -8,7 +8,7 @@ import { getManualSetupSources, getOrbSource } from "@/lib/source";
 
 export const metadata: Metadata = {
   title: "Manual setup",
-  description: "Install Orba orbs by copying the runtime and component files directly."
+  description: "Install Orbkit orbs by copying the runtime and component files directly."
 };
 
 export default async function ManualSetupPage() {
@@ -36,7 +36,7 @@ export default async function ManualSetupPage() {
     >
       <DocsSection heading="1. Check your alias">
         <p>
-          The orb imports the runtime from <code>@/components/ui/orba-core</code>. If your project
+          The orb imports the runtime from <code>@/components/ui/orbkit-core</code>. If your project
           uses a different alias, adjust the import at the top of the orb file — that is the only
           path either file references.
         </p>

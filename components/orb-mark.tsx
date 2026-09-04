@@ -18,7 +18,7 @@ export interface OrbMarkProps {
 }
 
 /**
- * The Orba mark: a dashed globe wireframe with a live shader orb sitting
+ * The Orbkit mark: a dashed globe wireframe with a live shader orb sitting
  * inside it under a glass lens.
  *
  * Deliberately plate-less — it draws in `currentColor` and expects to sit on

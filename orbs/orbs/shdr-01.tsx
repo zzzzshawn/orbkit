@@ -4,7 +4,7 @@
  * Note for editors: the shader lives in a template literal, so its comments
  * must not contain backticks.
  */
-import { ShaderOrb, type OrbVariant, type ShaderOrbProps } from "../core/orba-core";
+import { ShaderOrb, type OrbVariant, type ShaderOrbProps } from "../core/orbkit-core";
 
 /* ----------------------------------------------------------------------------
    SHDR-01 — a cut-glass orb whose own shell does the dispersing.

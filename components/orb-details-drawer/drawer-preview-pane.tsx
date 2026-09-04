@@ -6,7 +6,7 @@ import Link from "next/link";
 import { memo, type ReactNode } from "react";
 
 import { DRAWER_CONTENT_REVEAL } from "@/components/orb-details-drawer.constants";
-import { ORB_STATES, type OrbState } from "@/orbs/core/orba-core";
+import { ORB_STATES, type OrbState } from "@/orbs/core/orbkit-core";
 
 const STATE_LABELS: Record<OrbState, string> = {
   idle: "Idle",

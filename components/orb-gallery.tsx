@@ -15,7 +15,7 @@ import { OrbGalleryGridCard } from "@/components/orb-gallery-grid-card";
 import { OrbMark } from "@/components/orb-mark";
 import { orbComponentMap, orbVariantMap } from "@/lib/orb-component-map";
 import { shadcnAddCommand } from "@/lib/site-config";
-import { ORB_STATES, type OrbState } from "@/orbs/core/orba-core";
+import { ORB_STATES, type OrbState } from "@/orbs/core/orbkit-core";
 
 /** The orb shown in the hero tile. */
 const HeroOrb = orbComponentMap["shdr-11"];
@@ -308,21 +308,21 @@ export function OrbGallery({ items }: { items: OrbDetailsCard[] }) {
       <motion.aside
         {...enterFrom(GRID_START + CARD_STAGGER_CAP * CARD_STEP)}
         aria-label="Credits"
-        className="mx-auto mt-6 flex w-full max-w-4xl flex-col items-center gap-4 text-center 2xl:max-w-5xl sm:mt-10"
+        className="mx-auto mt-6 flex w-full max-w-4xl flex-col items-center gap-4 text-center 2xl:max-w-5xl sm:my-30"
       >
         <a
           href={XORDEV_URL}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="@XorDev on X"
-          className="group rounded-full outline-offset-4 transition-transform duration-200 ease-out hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100"
+          className="group rounded-full transition-transform duration-200 ease-out hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100 bg-[#000] p-1 shadow-[0_-1px_1px_#808080,0_0_0_0.5px_#ffffff27] "
         >
           <Image
             src="/xordev.jpg"
             alt="@XorDev profile picture"
             width={56}
             height={56}
-            className="size-14 select-none rounded-full ring-1 ring-fg-dim/30 group-hover:ring-fg-dim/60 transition-[box-shadow] duration-200 ease-out"
+            className="size-18 select-none rounded-full ring-fg-dim/30 group-hover:ring-fg-dim/60 transition-[box-shadow] duration-200 ease-out"
           />
         </a>
         <p className="max-w-prose text-pretty text-sm leading-relaxed tracking-tight text-fg-muted sm:text-base">

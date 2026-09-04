@@ -17,6 +17,7 @@ import { HomeLink } from "@/components/home-link";
 import { RouteAwareSiteFooter } from "@/components/route-aware-site-footer";
 import { OrbMark } from "@/components/orb-mark";
 import { SiteNav } from "@/components/site-nav";
+import { SocialLinks } from "@/components/social-links";
 import { ThemeToggle } from "@/components/theme-toggle";
 import {
   CREATOR_NAME,
@@ -56,7 +57,7 @@ const fontVariables = [
 /** Runs before paint so the first frame is already in the stored theme. */
 const themeInitScript = `(() => {
   try {
-    const stored = localStorage.getItem("orba-theme");
+    const stored = localStorage.getItem("orbkit-theme");
     const theme = stored === "light" || stored === "dark" ? stored : "dark";
     document.documentElement.dataset.theme = theme;
     document.documentElement.style.colorScheme = theme;
@@ -75,7 +76,7 @@ export const metadata: Metadata = {
   },
   description: SITE_DESCRIPTION,
   keywords: [
-    "Orba",
+    "Orbkit",
     "shader orb",
     "WebGL",
     "GLSL",
@@ -148,6 +149,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
         <div className="fixed right-4 top-4 z-20 flex items-center gap-2">
           <SiteNav />
+          <SocialLinks />
           <HomeLink />
           <ThemeToggle />
         </div>

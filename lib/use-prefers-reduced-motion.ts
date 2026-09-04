@@ -3,7 +3,7 @@
 import { useCallback, useSyncExternalStore } from "react";
 
 /*
-  useSyncExternalStore rather than useState + useEffect: orba's lint bans
+  useSyncExternalStore rather than useState + useEffect: orbkit's lint bans
   setState inside an effect body (cascading renders), and a media query is
   exactly the external store this hook is designed for — it also gets the
   right value on the first client render instead of flashing "no preference".

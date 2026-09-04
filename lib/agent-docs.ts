@@ -15,6 +15,7 @@ import {
   CREATOR_NAME,
   CREATOR_URL,
   REGISTRY_NAMESPACE,
+  REPO_URL,
   SITE_DESCRIPTION,
   SITE_HOMEPAGE,
   SITE_NAME,
@@ -22,7 +23,7 @@ import {
 } from "@/lib/site-config";
 
 export const API_VERSION = "1.0.0";
-export const REPO_URL = "https://github.com/zzzzshawn/orba";
+export { REPO_URL };
 
 export function absolute(path: string): string {
   return new URL(path, SITE_HOMEPAGE).href;
@@ -60,7 +61,7 @@ export interface SharedProp {
   description: string;
 }
 
-/** The prop surface every orb shares. Mirrors ShaderOrbProps in orba-core. */
+/** The prop surface every orb shares. Mirrors ShaderOrbProps in orbkit-core. */
 export const SHARED_PROPS: SharedProp[] = [
   { name: "size", type: "number", default: "280", description: "Rendered diameter in CSS pixels." },
   {
@@ -308,7 +309,7 @@ const RULES = [
   "Retune a state with `statePresets` / `stateColors` (merged key by key), not by forking the orb file.",
   "Feed a real signal through `volumes` (input = user speech energy, output = agent speech energy, both 0..1) when you have one; otherwise leave it synthesized.",
   "Keep mounted orbs under about a dozen per page — each is a WebGL context and browsers cap those near 16. `pauseOffscreen` (default true) handles scrolling, not count.",
-  "Install through the shadcn CLI, never npm. Two files land: components/ui/orba-core.tsx (the runtime) and components/ui/<slug>.tsx (the orb). They import nothing but React.",
+  "Install through the shadcn CLI, never npm. Two files land: components/ui/orbkit-core.tsx (the runtime) and components/ui/<slug>.tsx (the orb). They import nothing but React.",
   "The runtime is a client component; the orb renders nothing on the server and needs no dynamic import. It respects prefers-reduced-motion by drawing one static frame.",
   "Use the `wrapper` prop for a bezel (glass, ring, dotted, ticks, reticle, grid, halftone, scanlines). Never wrap the canvas in your own border that changes its footprint."
 ];
@@ -359,7 +360,7 @@ Every orb:
 
 ${shadcnAddUrlCommand("all")}
 
-Files land in components/ui/. The orb imports the runtime from @/components/ui/orba-core.
+Files land in components/ui/. The orb imports the runtime from @/components/ui/orbkit-core.
 
 ## States
 
@@ -399,7 +400,7 @@ export function buildAgentsMd(): string {
 
 A skill file, a chooser, and a JSON catalog. The agent installs an orb, wires the app's status onto its state, and can read every param back.
 
-${SITE_NAME} is ${SITE_DESCRIPTION.replace(/^Orba is /, "")}
+${SITE_NAME} is ${SITE_DESCRIPTION.replace(/^Orbkit is /, "")}
 
 ## What an agent does with it
 
@@ -488,7 +489,7 @@ State-driven WebGL orbs. Two files per install, zero dependencies, React 18+.
    ${shadcnAddUrlCommand(first.slug)}
    \`\`\`
 
-   Two files land: \`components/ui/orba-core.tsx\` and \`components/ui/${first.slug}.tsx\`. If the project already has orba-core, the CLI leaves it alone.
+   Two files land: \`components/ui/orbkit-core.tsx\` and \`components/ui/${first.slug}.tsx\`. If the project already has orbkit-core, the CLI leaves it alone.
 
 4. Render it and map status onto state. Copy from [recipes.md](recipes.md). Do not animate the orb yourself; do not set \`paused\` unless the user asks for a still.
 5. Tuning: fetch \`${absolute("/api/v1/components/<slug>")}\` for the orb's param keys, ranges and defaults. Pass \`params\` for a fixed override, \`statePresets\` / \`stateColors\` to retune one state. Only keys the orb declares do anything.
@@ -793,7 +794,7 @@ export function buildOpenApi() {
           operationId: "getRegistryItem",
           tags: ["machine"],
           summary: "shadcn registry item",
-          parameters: [{ name: "name", in: "path", required: true, schema: { type: "string", example: "shdr-11" }, description: "An orb slug, `orba-core`, or `all`." }],
+          parameters: [{ name: "name", in: "path", required: true, schema: { type: "string", example: "shdr-11" }, description: "An orb slug, `orbkit-core`, or `all`." }],
           responses: { "200": { description: "shadcn registry item JSON, including the source files.", content: { "application/json": { schema: { type: "object" } } } } }
         }
       },

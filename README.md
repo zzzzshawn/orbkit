@@ -1,4 +1,4 @@
-# Orba
+# Orbkit
 
 WebGL shader orbs for React, distributed through a shadcn registry. Install an orb, own the
 source, tune every uniform.
@@ -7,7 +7,7 @@ Built the same way as [Dot Matrix](https://dotmatrix.zzzzshawn.cloud) — a docs
 registry, with the components living in-repo as plain source files.
 
 ```bash
-npx shadcn@latest add @orba/shdr-11
+npx shadcn@latest add @orbkit/shdr-11
 ```
 
 > The registry namespace, product name, and homepage all come from
@@ -81,7 +81,7 @@ by `lib/agent-docs.ts`, so adding an orb updates every endpoint at once.
 
 ```
 orbs/
-  core/orba-core.tsx     the WebGL runtime: types, GLSL prelude, volume synthesis, <ShaderOrb>
+  core/orbkit-core.tsx     the WebGL runtime: types, GLSL prelude, volume synthesis, <ShaderOrb>
   orbs/shdr-11.tsx  one file per orb: fragment shader + param schema + state presets
   index.ts               barrel for the docs site
 lib/
@@ -105,7 +105,7 @@ Two design rules make the rest fall out:
 
 The core is emitted as `registry:ui`, not `registry:lib`. shadcn routes files by **type**, not by
 the declared path — `registry:lib` lands them in the consumer's `lib` alias while the orb still
-imports `@/components/ui/orba-core`, which breaks every install.
+imports `@/components/ui/orbkit-core`, which breaks every install.
 
 ## Adding an orb
 

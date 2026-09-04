@@ -64,7 +64,7 @@ export default function DevelopersPage() {
         <DocsCode lang="jsonc">{`{
   "slug": "shdr-11",
   "name": "Shdr11",
-  "install": "npx shadcn@latest add @orba/shdr-11",
+  "install": "npx shadcn@latest add @orbkit/shdr-11",
   "params": [
     { "key": "speed", "label": "…", "min": 0.015, "max": 10, "step": 0.05, "default": 0.5, "integrate": true },
     …

@@ -103,8 +103,8 @@ export const PropsTableIcons = {
 function DividerRow({ span }: { span: number }) {
   return (
     <tr aria-hidden>
-      <td colSpan={span} className="orba-props-table-divider-cell">
-        <div className="orba-props-table-rule" />
+      <td colSpan={span} className="orbkit-props-table-divider-cell">
+        <div className="orbkit-props-table-rule" />
       </td>
     </tr>
   );
@@ -125,7 +125,7 @@ export function PropsTable({
   rows: readonly { key: string; cells: readonly ReactNode[] }[];
 }) {
   return (
-    <div className="orba-props-table w-full overflow-x-auto p-1 rounded-lg">
+    <div className="orbkit-props-table w-full overflow-x-auto p-1 rounded-lg">
       <table className="min-w-[520px] text-xs leading-[1.4]">
         <colgroup>
           {columns.map((c) => (

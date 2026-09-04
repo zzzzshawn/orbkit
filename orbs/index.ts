@@ -11,6 +11,6 @@ export {
   type OrbParamValues,
   type OrbColorValues,
   type ShaderOrbProps
-} from "./core/orba-core";
+} from "./core/orbkit-core";
 
 export { Shdr11, shdr11Orb, type Shdr11Props } from "./orbs/shdr-11";

@@ -14,7 +14,7 @@ import {
   type OrbState,
   type OrbVariant,
   type OrbWrapper
-} from "@/orbs/core/orba-core";
+} from "@/orbs/core/orbkit-core";
 
 const PANEL_NAME = "Orb Playground";
 const DEFAULT_SIZE = 420;

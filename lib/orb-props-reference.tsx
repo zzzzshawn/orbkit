@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { HIDE_CODE_SCROLLBARS } from "@/lib/hide-code-scrollbar-class";
 import { PropsTable, PropsTableIcons, renderNumber } from "@/components/props-table";
 import { orbVariantMap } from "@/lib/orb-component-map";
-import { ORB_STATES, ORB_WRAPPERS } from "@/orbs/core/orba-core";
+import { ORB_STATES, ORB_WRAPPERS } from "@/orbs/core/orbkit-core";
 
 /*
   Props reference for the details drawer.
@@ -16,7 +16,7 @@ import { ORB_STATES, ORB_WRAPPERS } from "@/orbs/core/orba-core";
   from — so adding an orb or renaming a param updates both places at once.
 
   Types and defaults are tinted with the code tokens (--color-code-literal /
-  -keyword / -type), which mirror lib/orba-code-theme.ts — the theme this site
+  -keyword / -type), which mirror lib/orbkit-code-theme.ts — the theme this site
   highlights with. So `"idle"` in the Default column is the same white as
   `state="idle"` in the snippet above it, `false` the same blue, and `number`
   the same teal. The colour carries the same meaning in both places rather

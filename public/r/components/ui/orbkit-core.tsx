@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 
 /* ----------------------------------------------------------------------------
-   Orba core — raw WebGL shader orb runtime. No dependencies.
+   Orbkit core — raw WebGL shader orb runtime. No dependencies.
 
    An orb is a full-screen triangle rendered into a transparent canvas by a
    fragment shader. Every orb declares a parameter schema (sliders + colors);
@@ -238,7 +238,7 @@ function compile(gl: WebGLRenderingContext, type: number, src: string): WebGLSha
   gl.shaderSource(shader, src);
   gl.compileShader(shader);
   if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-    console.error("[orba] shader compile error:", gl.getShaderInfoLog(shader));
+    console.error("[orbkit] shader compile error:", gl.getShaderInfoLog(shader));
     gl.deleteShader(shader);
     return null;
   }
@@ -293,12 +293,12 @@ export type OrbWrapper = (typeof ORB_WRAPPERS)[number];
   loop), and a ring that keeps spinning around a frozen orb would be the worse
   half of the two still moving.
 */
-const WRAPPER_STYLE_HREF = "orba-wrapper";
+const WRAPPER_STYLE_HREF = "orbkit-wrapper";
 const WRAPPER_CSS = `
-@keyframes orba-w-spin { to { transform: rotate(360deg); } }
-@keyframes orba-w-roll { from { transform: translateY(-110%); } to { transform: translateY(360%); } }
+@keyframes orbkit-w-spin { to { transform: rotate(360deg); } }
+@keyframes orbkit-w-roll { from { transform: translateY(-110%); } to { transform: translateY(360%); } }
 @media (prefers-reduced-motion: reduce) {
-  .orba-w-anim { animation: none !important; }
+  .orbkit-w-anim { animation: none !important; }
 }
 `;
 
@@ -520,8 +520,8 @@ const WRAPPER_SPECS: Record<Exclude<OrbWrapper, "none">, WrapperSpec> = {
       <svg
         aria-hidden="true"
         viewBox="0 0 100 100"
-        className="orba-w-anim"
-        style={{ ...svgLayer, animation: "orba-w-spin 48s linear infinite" }}
+        className="orbkit-w-anim"
+        style={{ ...svgLayer, animation: "orbkit-w-spin 48s linear infinite" }}
       >
         <circle
           cx="50"
@@ -687,7 +687,7 @@ const WRAPPER_SPECS: Record<Exclude<OrbWrapper, "none">, WrapperSpec> = {
           }}
         >
           <span
-            className="orba-w-anim"
+            className="orbkit-w-anim"
             style={{
               position: "absolute",
               left: 0,
@@ -696,7 +696,7 @@ const WRAPPER_SPECS: Record<Exclude<OrbWrapper, "none">, WrapperSpec> = {
               height: "30%",
               background:
                 "linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.07) 50%, rgba(255,255,255,0) 100%)",
-              animation: "orba-w-roll 7s linear infinite"
+              animation: "orbkit-w-roll 7s linear infinite"
             }}
           />
         </span>
@@ -895,7 +895,7 @@ export function ShaderOrb({
       gl.attachShader(prog, fs);
       gl.linkProgram(prog);
       if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
-        console.error("[orba] program link error:", gl.getProgramInfoLog(prog));
+        console.error("[orbkit] program link error:", gl.getProgramInfoLog(prog));
         gl.deleteProgram(prog);
         return releaseShaders;
       }

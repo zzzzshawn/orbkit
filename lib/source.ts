@@ -8,7 +8,7 @@ const orbsRoot = path.join(process.cwd(), "orbs");
  * every source string the docs site shows, so a copied snippet compiles as-is.
  */
 const importRewrites: ReadonlyArray<{ from: string; to: string }> = [
-  { from: "../core/orba-core", to: "@/components/ui/orba-core" }
+  { from: "../core/orbkit-core", to: "@/components/ui/orbkit-core" }
 ];
 
 export function rewriteOrbImports(source: string): string {
@@ -29,9 +29,9 @@ export interface ManualSetupSources {
 }
 
 export async function getManualSetupSources(): Promise<ManualSetupSources> {
-  const coreSource = await readFile(path.join(orbsRoot, "core", "orba-core.tsx"), "utf-8");
+  const coreSource = await readFile(path.join(orbsRoot, "core", "orbkit-core.tsx"), "utf-8");
   return {
-    coreFilePath: "components/ui/orba-core.tsx",
+    coreFilePath: "components/ui/orbkit-core.tsx",
     coreSource
   };
 }

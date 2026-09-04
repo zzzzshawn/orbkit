@@ -1,6 +1,6 @@
 import type { ComponentType } from "react";
 
-import type { OrbVariant, ShaderOrbProps } from "@/orbs/core/orba-core";
+import type { OrbVariant, ShaderOrbProps } from "@/orbs/core/orbkit-core";
 import { Shdr11, shdr11Orb } from "@/orbs/orbs/shdr-11";
 import { Shdr31, shdr31Orb } from "@/orbs/orbs/shdr-31";
 import { Shdr21, shdr21Orb } from "@/orbs/orbs/shdr-21";

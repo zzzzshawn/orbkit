@@ -27,7 +27,7 @@ import { HIDE_CODE_SCROLLBARS } from "@/lib/hide-code-scrollbar-class";
 import { OrbPropsReference } from "@/lib/orb-props-reference";
 import { orbVariantMap } from "@/lib/orb-component-map";
 import { scopedItemName } from "@/lib/site-config";
-import type { OrbState } from "@/orbs/core/orba-core";
+import type { OrbState } from "@/orbs/core/orbkit-core";
 import Link from "next/link";
 import { memo, useCallback, useMemo, useRef, useState, type ReactNode } from "react";
 import { filter } from "framer-motion/client";
@@ -225,7 +225,7 @@ ${lines.join("\n")}
   }, [selected]);
 
   // Every orb opens on the CLI tab with pnpm selected. Reset during render
-  // rather than in an effect — orba's lint bans setState in an effect body
+  // rather than in an effect — orbkit's lint bans setState in an effect body
   // (cascading renders), and this is the documented derived-state form.
   const slug = selected?.slug;
   const [tabSlug, setTabSlug] = useState(slug);

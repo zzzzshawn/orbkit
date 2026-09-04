@@ -4,7 +4,7 @@
  * Note for editors: the shader lives in a template literal, so its comments
  * must not contain backticks.
  */
-import { ShaderOrb, type OrbVariant, type ShaderOrbProps } from "@/components/ui/orba-core";
+import { ShaderOrb, type OrbVariant, type ShaderOrbProps } from "@/components/ui/orbkit-core";
 
 /* ----------------------------------------------------------------------------
    SHDR-10 — a lattice of light knitted into the ball's own skin.
