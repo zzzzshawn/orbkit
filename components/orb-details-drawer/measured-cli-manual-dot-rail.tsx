@@ -6,6 +6,18 @@ import {
   CLI_MANUAL_DOT_ROW_H
 } from "@/components/orb-details-drawer.constants";
 
+/*
+  The labels are small and sit right on the dot row, so each button gets an
+  invisible hit area reaching 12px above and below, plus 8px outward on its
+  outer edge only. It is a pseudo-element, so the measured label boxes that
+  light the dots are unchanged, and because neither area crosses the seam
+  between the two buttons, the later one in the DOM cannot steal clicks from
+  its neighbour's padding.
+*/
+const HIT_AREA = "relative before:absolute before:-inset-y-3 before:content-['']";
+const HIT_AREA_CLI = `${HIT_AREA} before:-left-2 before:right-0`;
+const HIT_AREA_MANUAL = `${HIT_AREA} before:left-0 before:-right-2`;
+
 interface MeasuredCliManualDotRailProps {
   activeTab: "cli" | "manual";
   onTabChange: (tab: "cli" | "manual") => void;
@@ -64,7 +76,7 @@ export const MeasuredCliManualDotRail = memo(function MeasuredCliManualDotRail({
           ref={cliRef}
           type="button"
           onClick={() => onTabChange("cli")}
-          className={`rounded-lg focus-visible:outline-none! focus-visible:ring-0! pr-2 pl-1.5 text-xs font-medium transition ${
+          className={`${HIT_AREA_CLI} rounded-lg focus-visible:outline-none! focus-visible:ring-0! pr-2 pl-1.5 text-xs font-medium transition ${
             activeTab === "cli" ? "text-fg-strong" : "text-fg-muted hover:text-fg"
           }`}
         >
@@ -74,7 +86,7 @@ export const MeasuredCliManualDotRail = memo(function MeasuredCliManualDotRail({
           ref={manualRef}
           type="button"
           onClick={() => onTabChange("manual")}
-          className={`rounded-lg focus-visible:outline-none! focus-visible:ring-0! pl-2 pr-1.5 text-xs font-medium transition ${
+          className={`${HIT_AREA_MANUAL} rounded-lg focus-visible:outline-none! focus-visible:ring-0! pl-2 pr-1.5 text-xs font-medium transition ${
             activeTab === "manual" ? "text-fg-strong" : "text-fg-muted hover:text-fg"
           }`}
         >

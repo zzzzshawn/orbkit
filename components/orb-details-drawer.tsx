@@ -135,6 +135,27 @@ export function OrbDetailsDrawer({
 
   const [copiedToken, setCopiedToken] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<"cli" | "manual">("cli");
+  /*
+    Manual sits to the right of CLI on the rail, so its panel arrives from the
+    right (1) and CLI's from the left (-1). The direction is stored with the
+    tab so the exiting panel, which can no longer see fresh props, still
+    slides the right way through `custom`.
+  */
+  const [tabDirection, setTabDirection] = useState<1 | -1>(1);
+  const selectTab = useCallback((tab: "cli" | "manual") => {
+    setTabDirection(tab === "manual" ? 1 : -1);
+    setActiveTab(tab);
+  }, []);
+
+  /* Tab panels slide in the direction of travel; reduced motion crossfades instead. */
+  const tabSlide: Variants = {
+    enter: (direction: number) =>
+      reduceMotion ? { x: 0, opacity: 0, } : { x: `${50 * direction}%`, opacity: 0, filter: "blur(10px)" },
+    center: { x: 0, opacity: 1, filter: "blur(0px)" },
+    exit: (direction: number) =>
+      reduceMotion ? { x: 0, opacity: 0 } : { x: `${-50 * direction}%`, opacity: 0, filter: "blur(10px)" }
+  };
+  const tabSlideTransition = { type: "spring" as const, stiffness: 420, damping: 38 } as const;
   const [packageManager, setPackageManager] = useState<ShadcnPackageManager>("pnpm");
   const installCommand = selected
     ? shadcnRegistryAddCommand(packageManager, scopedItemName(selected.slug))
@@ -396,9 +417,20 @@ ${lines.join("\n")}
                     {selected ? (
                       <div className="flex h-full min-h-0 w-full min-w-0 flex-1 flex-col gap-2 overflow-hidden sm:px-1.5">
                         <div className="shrink-0 px-4 pt-4">
-                          <MeasuredCliManualDotRail activeTab={activeTab} onTabChange={setActiveTab} />
+                          <MeasuredCliManualDotRail activeTab={activeTab} onTabChange={selectTab} />
                         </div>
-                        <section className="drawer-scroll-source min-h-0 flex-1 overflow-y-auto overscroll-y-contain px-4 pt-2 pb-6">
+                        <section className="drawer-scroll-source relative min-h-0 flex-1 overflow-x-hidden overflow-y-auto overscroll-y-contain px-4 pt-2 pb-6">
+                          <AnimatePresence mode="popLayout" initial={false} custom={tabDirection}>
+                            <motion.div
+                              key={activeTab}
+                              custom={tabDirection}
+                              variants={tabSlide}
+                              initial="enter"
+                              animate="center"
+                              exit="exit"
+                              transition={tabSlideTransition}
+                              className="min-w-0"
+                            >
                           {activeTab === "cli" ? (
                             <motion.div
                               className="grid gap-4"
@@ -480,13 +512,15 @@ ${lines.join("\n")}
                               </motion.div>
                             </motion.div>
                           )}
+                            </motion.div>
+                          </AnimatePresence>
                         </section>
                       </div>
                     ) : null}
                   </motion.div>
                   <motion.div
                     initial={{ opacity: 0, scale: 0.92 }}
-                    animate={{ opacity: 1, scale: 1, transition: { delay: 0.08 } }}
+                    animate={{ opacity: 1, scale: 1, transition: { delay: 0.17 } }}
                     exit={{ opacity: 0, scale: 0.92 }}
                     transition={{ duration: 0.2, ease: "easeOut" }}
                     className="will-change-[transform,opacity] motion-reduce:will-change-auto pointer-events-none absolute inset-x-0 max-sm:bottom-1 sm:top-1/2 sm:-translate-y-1/2 z-50 flex justify-center"

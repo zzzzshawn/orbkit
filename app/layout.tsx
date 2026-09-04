@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import { Analytics } from "@vercel/analytics/next";
 import Link from "next/link";
 import { Public_Sans } from "next/font/google";
 import { GeistMono } from "geist/font/mono";
@@ -162,6 +163,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <DialKitRouteRoot />
         <SoundCues />
         <RouteAwareSiteFooter />
+        <Analytics />
       </body>
     </html>
   );
