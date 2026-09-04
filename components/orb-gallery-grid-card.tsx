@@ -170,6 +170,7 @@ export const OrbGalleryGridCard = memo(function OrbGalleryGridCard({
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.4, ease: "easeOut", delay: reduceMotion ? 0 : enterDelay }}
+      data-cue="bloom"
       onClick={() => onSelect(item.slug)}
       className="group relative aspect-square overflow-hidden rounded-[36px] bg-surface/60 transition-[transform,background-color]  ease-out focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-(--focus-ring) motion-reduce:transition-none"
       aria-label={`View ${item.title} details`}

@@ -404,6 +404,7 @@ function CodeBlockWithCopy({
         {scrollOrPlain}
         <button
           type="button"
+          data-cue="none"
           aria-label={copied ? copyAriaLabelCopied : copyAriaLabel}
           onClick={onCopy}
           className={[

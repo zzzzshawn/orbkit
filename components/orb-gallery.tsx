@@ -252,6 +252,7 @@ export function OrbGallery({ items }: { items: OrbDetailsCard[] }) {
                 type="button"
                 role="radio"
                 aria-checked={active}
+                data-cue="chime"
                 onClick={() => setState(value)}
                 className={`relative rounded-xl px-4 py-2 text-xs tracking-tight transition-colors duration-150 ease-out sm:text-sm ${active ? "text-fg-strong" : "text-fg-dim hover:text-link-hover"
                   }`}

@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState, type Ref } from "react";
 
 import { CheckIcon, CopyClipboardIcon } from "@/components/matrix-icons";
+import { playCue } from "@/lib/sound-cues";
 
 export interface CopyButtonProps {
   value: string;
@@ -48,13 +49,15 @@ export function CopyButton({
       await navigator.clipboard.writeText(value);
       setCopied(true);
       onCopied?.();
+      playCue("success");
       if (resetRef.current) clearTimeout(resetRef.current);
       resetRef.current = setTimeout(() => {
         setCopied(false);
         resetRef.current = null;
       }, resetAfter);
     } catch {
-      // Clipboard is unavailable in insecure contexts — nothing useful to do.
+      // Clipboard is unavailable in insecure contexts; at least say so.
+      playCue("error");
     }
   }, [value, resetAfter, onCopied]);
 
@@ -68,6 +71,7 @@ export function CopyButton({
     <button
       ref={ref}
       type="button"
+      data-cue="none"
       onClick={() => void copy()}
       aria-label={copied ? "Copied" : "Copy to clipboard"}
       className={`${HIT_AREA} ${

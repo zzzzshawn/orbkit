@@ -8,6 +8,8 @@ import {
   useReducedMotion,
   type Variants
 } from "framer-motion";
+
+import { playCue } from "@/lib/sound-cues";
 import {
   PackageManagerInstallCard,
   TitledCodeCopyCard,
@@ -243,11 +245,13 @@ ${lines.join("\n")}
     try {
       await navigator.clipboard.writeText(content);
       setCopiedToken(token);
+      playCue("success");
       window.setTimeout(() => {
         setCopiedToken((prev) => (prev === token ? null : prev));
       }, 1400);
     } catch {
-      // Ignore copy failures in unsupported environments.
+      // Copy failed in an unsupported environment; at least say so.
+      playCue("error");
     }
   }, []);
 
@@ -310,6 +314,7 @@ ${lines.join("\n")}
       onOpenChange={(nextOpen, eventDetails) => {
         if (!nextOpen) {
           eventDetails.preventUnmountOnClose();
+          playCue("droplet");
         }
         onOpenChange(nextOpen);
       }}
@@ -488,6 +493,7 @@ ${lines.join("\n")}
                   >
                     <Dialog.Close
                       aria-label="Close dialog"
+                      data-cue="none"
                       className="pointer-events-auto inline-grid place-items-center rounded-lg bg-bg p-2 h-max text-fg-strong"
                     >
                       <FloatingCloseCrossDots />

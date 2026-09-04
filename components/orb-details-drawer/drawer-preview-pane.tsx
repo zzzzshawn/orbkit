@@ -89,6 +89,7 @@ export const DrawerPreviewPane = memo(function DrawerPreviewPane({
                 type="button"
                 role="radio"
                 aria-checked={active}
+                data-cue="chime"
                 onClick={() => onStateChange(value)}
                 className={`relative rounded-lg px-3 py-1.5 text-xs tracking-wide transition-colors duration-150 ease-out ${active ? "text-fg-strong" : "text-fg-dim hover:text-link-hover"
                   }`}

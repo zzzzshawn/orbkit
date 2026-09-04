@@ -5,7 +5,7 @@ import { playCue, setSoundEnabled, useSoundEnabled } from "@/lib/sound-cues";
 
 /**
  * Header switch for the interaction sounds. Opted out of the global press cue
- * so muting is silent; turning sound back on plays one tick as confirmation.
+ * so muting is silent; turning sound back on plays a sparkle as confirmation.
  */
 export function SoundToggle() {
   const enabled = useSoundEnabled();
@@ -13,7 +13,7 @@ export function SoundToggle() {
   const toggle = () => {
     const next = !enabled;
     setSoundEnabled(next);
-    if (next) playCue("tick");
+    if (next) playCue("sparkle");
   };
 
   return (
