@@ -18,6 +18,8 @@ import { RouteAwareSiteFooter } from "@/components/route-aware-site-footer";
 import { OrbMark } from "@/components/orb-mark";
 import { SiteNav } from "@/components/site-nav";
 import { SocialLinks } from "@/components/social-links";
+import { SoundCues } from "@/components/sound-cues";
+import { SoundToggle } from "@/components/sound-toggle";
 import { ThemeToggle } from "@/components/theme-toggle";
 import {
   CREATOR_NAME,
@@ -151,12 +153,14 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <SiteNav />
           <SocialLinks />
           <HomeLink />
+          <SoundToggle />
           <ThemeToggle />
         </div>
 
         <div className="flex min-h-0 flex-1 flex-col">{children}</div>
 
         <DialKitRouteRoot />
+        <SoundCues />
         <RouteAwareSiteFooter />
       </body>
     </html>

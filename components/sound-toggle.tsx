@@ -1,0 +1,34 @@
+"use client";
+
+import { SoundOffIcon, SoundOnIcon } from "@/components/matrix-icons";
+import { playCue, setSoundEnabled, useSoundEnabled } from "@/lib/sound-cues";
+
+/**
+ * Header switch for the interaction sounds. Opted out of the global press cue
+ * so muting is silent; turning sound back on plays one tick as confirmation.
+ */
+export function SoundToggle() {
+  const enabled = useSoundEnabled();
+
+  const toggle = () => {
+    const next = !enabled;
+    setSoundEnabled(next);
+    if (next) playCue("tick");
+  };
+
+  return (
+    <button
+      type="button"
+      aria-label={enabled ? "Turn sound off" : "Turn sound on"}
+      data-cue="none"
+      onClick={toggle}
+      className="inline-flex w-max min-w-0 items-center justify-center rounded-xl bg-preset p-2 text-fg-dim transition-colors duration-150 ease-out hover:text-link-hover focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-(--focus-ring)"
+    >
+      {enabled ? (
+        <SoundOnIcon className="size-4 sm:size-5" />
+      ) : (
+        <SoundOffIcon className="size-4 sm:size-5" />
+      )}
+    </button>
+  );
+}

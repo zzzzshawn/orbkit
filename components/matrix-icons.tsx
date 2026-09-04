@@ -169,6 +169,33 @@ export function GitHubIcon({ className, size = 18 }: MatrixDotIconProps) {
   );
 }
 
+/* ----------------------------------------------------------------------------
+   Sound toggle: the same speaker with either two waves or a cross, so the
+   silhouette holds still and only the right-hand side changes.
+---------------------------------------------------------------------------- */
+
+const speaker = <path d="M2.75 6.75H5.25L9.25 3.5V14.5L5.25 11.25H2.75Z" />;
+
+export function SoundOnIcon(props: MatrixDotIconProps) {
+  return (
+    <IconFrame {...props}>
+      {speaker}
+      <path d="M11.75 6.75a3.25 3.25 0 0 1 0 4.5" />
+      <path d="M14 4.5a6.25 6.25 0 0 1 0 9" />
+    </IconFrame>
+  );
+}
+
+export function SoundOffIcon(props: MatrixDotIconProps) {
+  return (
+    <IconFrame {...props}>
+      {speaker}
+      <path d="M12 7.25L15.5 10.75" />
+      <path d="M15.5 7.25L12 10.75" />
+    </IconFrame>
+  );
+}
+
 export type ShadcnPackageManager = "npm" | "yarn" | "bun" | "pnpm";
 
 export const SHADCN_PACKAGE_MANAGERS: ShadcnPackageManager[] = ["npm", "yarn", "bun", "pnpm"];

@@ -425,14 +425,14 @@ body[data-playground-route="true"]
   background: var(--preset) !important;
   padding: 0 !important;
   box-shadow: none !important;
-  color: var(--color-fg-strong) !important;
+  color: var(--color-fg-dim) !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
   transition: opacity 150ms ease-out, color 150ms ease-out;
 }
 
 .dialkit-panel-inner[data-collapsed="true"]:hover {
-  opacity: 0.9;
+  color: var(--color-link-hover) !important;
 }
 
 .dialkit-panel-inner[data-collapsed="true"]:focus-visible {

@@ -19,6 +19,7 @@
   "dependencies": {
     "@base-ui/react": "^1.4.1",
     "@scritto/react": "^0.1.0",
+    "cuelume": "^0.2.2",
     "dialkit": "^1.2.0",
     "framer-motion": "^12.43.0",
     "geist": "^1.7.0",

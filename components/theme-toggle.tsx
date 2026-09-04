@@ -89,7 +89,7 @@ export function ThemeToggle() {
       type="button"
       aria-label={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
       onClick={toggleTheme}
-      className="inline-flex w-max min-w-0 items-center justify-center rounded-xl bg-preset p-2 text-fg-strong transition-[opacity,color] duration-150 ease-out hover:opacity-90 focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-(--focus-ring)"
+      className="inline-flex w-max min-w-0 items-center justify-center rounded-xl bg-preset p-2 text-fg-dim transition-colors duration-150 ease-out hover:text-link-hover focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-(--focus-ring)"
     >
       <ThemeMatrixIcon className="size-4 sm:size-5" />
     </button>

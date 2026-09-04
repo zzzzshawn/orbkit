@@ -335,7 +335,7 @@ export function OrbGallery({ items }: { items: OrbDetailsCard[] }) {
           >
             @XorDev
           </a>{" "}
-          on X. Go check out his account — it is a goldmine of shader art and
+          on X. Go check out his account. It is a goldmine of shader art and
           techniques.
         </p>
       </motion.aside>
