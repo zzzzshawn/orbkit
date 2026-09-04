@@ -81,7 +81,10 @@ export function ThemeToggle() {
     }
 
     updateTransitionStyles(createThemeTransitionCss());
-    document.startViewTransition(switchTheme);
+    const transition = document.startViewTransition(switchTheme);
+    // A hidden tab skips the transition and rejects these; the theme still applies.
+    transition.ready.catch(() => {});
+    transition.finished.catch(() => {});
   }, [theme]);
 
   return (
@@ -90,7 +93,7 @@ export function ThemeToggle() {
       data-cue="toggle"
       aria-label={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
       onClick={toggleTheme}
-      className="inline-flex w-max min-w-0 items-center justify-center rounded-xl bg-preset p-2 text-fg-dim transition-colors duration-150 ease-out hover:text-link-hover focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-(--focus-ring)"
+      className="inline-flex h-8 w-8 min-w-0 items-center justify-center rounded-xl bg-preset p-2 text-fg-dim sm:h-9 sm:w-9 transition-colors duration-150 ease-out hover:text-link-hover focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-(--focus-ring)"
     >
       <ThemeMatrixIcon className="size-4 sm:size-5" />
     </button>

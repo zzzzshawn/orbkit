@@ -46,7 +46,7 @@ export async function SocialLinks() {
   const githubLabel = `${SITE_NAME} on GitHub${starsText ? `, ${starsText} stars` : ""}`;
 
   return (
-    <nav aria-label="Social" className="flex items-center gap-0.5 rounded-xl bg-preset p-1">
+    <nav aria-label="Social" className="flex h-8 items-center gap-0.5 rounded-xl bg-preset p-1 sm:h-9">
       <a
         href={CREATOR_URL}
         aria-label={xLabel}

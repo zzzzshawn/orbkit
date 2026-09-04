@@ -108,7 +108,7 @@ export const HeroInstallCommand = memo(function HeroInstallCommand({
               animate="show"
               exit="out"
               aria-label={text}
-              className="col-start-1 row-start-1 min-w-0 whitespace-nowrap text-[11px] leading-normal font-semibold tracking-tight text-fg sm:text-base text-center min-w-[290px]"
+              className="col-start-1 row-start-1 min-w-0 whitespace-nowrap text-[11px] leading-normal font-semibold tracking-tight text-fg sm:text-base text-center min-w-[208px] lg:min-w-[290px]"
             >
               {/*
                 Split for the stagger. `whitespace-pre` keeps the spaces from

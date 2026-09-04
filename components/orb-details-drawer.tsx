@@ -4,7 +4,6 @@ import { Dialog } from "@base-ui/react/dialog";
 import {
   AnimatePresence,
   motion,
-  scale,
   useReducedMotion,
   type Variants
 } from "framer-motion";
@@ -22,7 +21,6 @@ import {
 } from "@/components/orb-details-drawer.constants";
 import "@/components/drawer-scroll-fade.css";
 import { DrawerPreviewPane } from "@/components/orb-details-drawer/drawer-preview-pane";
-import { ExampleUsageDotRail } from "@/components/orb-details-drawer/example-usage-dot-rail";
 import { FloatingCloseCrossDots } from "@/components/orb-details-drawer/floating-close-cross-dots";
 import { MeasuredCliManualDotRail } from "@/components/orb-details-drawer/measured-cli-manual-dot-rail";
 import { HIDE_CODE_SCROLLBARS } from "@/lib/hide-code-scrollbar-class";
@@ -32,7 +30,6 @@ import { scopedItemName } from "@/lib/site-config";
 import type { OrbState } from "@/orbs/core/orbkit-core";
 import Link from "next/link";
 import { memo, useCallback, useMemo, useRef, useState, type ReactNode } from "react";
-import { filter } from "framer-motion/client";
 
 const MemoOrbPropsReference = memo(OrbPropsReference);
 
@@ -381,7 +378,6 @@ ${lines.join("\n")}
                     <DrawerPreviewPane
                       selectedSlug={selected?.slug}
                       selectedTitle={selected?.title}
-                      selectedNote={selected ? orbVariantMap[selected.slug]?.note : undefined}
                       selectedDescription={selected?.description}
                       preview={preview}
                       state={state}

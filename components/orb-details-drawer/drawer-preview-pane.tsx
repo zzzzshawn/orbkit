@@ -1,7 +1,6 @@
 "use client";
 
 import { motion, useReducedMotion, type Variants } from "framer-motion";
-import { GeistPixelCircle } from "geist/font/pixel";
 import Link from "next/link";
 import { memo, type ReactNode } from "react";
 
@@ -17,7 +16,6 @@ const STATE_LABELS: Record<OrbState, string> = {
 interface DrawerPreviewPaneProps {
   selectedSlug?: string;
   selectedTitle?: string;
-  selectedNote?: string;
   selectedDescription?: string;
   preview: ReactNode;
   state: OrbState;
@@ -35,7 +33,6 @@ interface DrawerPreviewPaneProps {
 export const DrawerPreviewPane = memo(function DrawerPreviewPane({
   selectedSlug,
   selectedTitle,
-  selectedNote,
   selectedDescription,
   preview,
   state,

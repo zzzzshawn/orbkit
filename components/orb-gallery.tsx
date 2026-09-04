@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { useCallback, useMemo, useState } from "react";
 
@@ -16,9 +15,6 @@ import { OrbMark } from "@/components/orb-mark";
 import { orbComponentMap, orbVariantMap } from "@/lib/orb-component-map";
 import { shadcnAddCommand } from "@/lib/site-config";
 import { ORB_STATES, type OrbState } from "@/orbs/core/orbkit-core";
-
-/** The orb shown in the hero tile. */
-const HeroOrb = orbComponentMap["shdr-11"];
 
 /*
   Page entrance. The header blurs in top-down, then the grid follows.
@@ -35,15 +31,6 @@ const CARD_STEP = 0.035;
 /** Past this the cards arrive with the last staggered one — nobody is waiting
     on a card two screens down, and the tail would run for a full second. */
 const CARD_STAGGER_CAP = 12;
-
-const heroNavLinkClassName =
-  "text-fg-dim inline-block outline-offset-2 transition-[color,transform] duration-200 ease-out hover:text-link-hover focus-visible:text-link-hover motion-reduce:transition-colors";
-
-const HERO_NAV_LINKS = [
-  { label: "Introduction", href: "/getting-started/introduction" },
-  { label: "Usage", href: "/getting-started/usage" },
-  { label: "Manual setup", href: "/getting-started/manual" }
-];
 
 /** Most of the orbs are referenced from XorDev's shader work. */
 const XORDEV_URL = "https://x.com/XorDev";
@@ -160,58 +147,6 @@ export function OrbGallery({ items }: { items: OrbDetailsCard[] }) {
     <main className="relative mx-auto flex min-h-dvh w-full max-w-[1400px] flex-col gap-6 px-4 py-8 sm:px-6 sm:py-10 lg:gap-10 lg:px-8">
       <section>
         <div className="mt-10 grid gap-6 sm:mt-8 lg:grid-cols-[1.4fr_auto] lg:items-end">
-          {/* <div className="flex flex-col gap-8">
-            <div className="space-y-4">
-              <div className="flex w-full justify-between sm:gap-4">
-                <h1 className="theme-text-strong text-balance text-3xl tracking-tight sm:text-8xl">
-                  <span className="block">
-                    Shader{" "}
-                    <span
-                      className="-mx-0.5 hidden size-[0.95em] translate-y-1 rotate-5 rounded-md bg-[#dfdfdf] p-0.5 sm:-mx-1 sm:inline-block sm:translate-y-3 sm:rounded-[22px] sm:p-1"
-                      aria-hidden="true"
-                    >
-                      <Image
-                        src="/icon.svg"
-                        alt=""
-                        width={200}
-                        height={200}
-                        className="size-full select-none"
-                        draggable={false}
-                        priority
-                      />
-                    </span>{" "}
-                    orbs for every agent.
-                  </span>
-                </h1>
-
-                <div className="flex w-max shrink-0 flex-col items-end gap-1 pt-1.5 text-xs sm:gap-2 sm:pt-4 sm:text-2xl">
-                  {HERO_NAV_LINKS.map((link) => (
-                    <Link key={link.href} href={link.href} className={heroNavLinkClassName}>
-                      {link.label}
-                    </Link>
-                  ))}
-                  <Link
-                    href={`/playground?orb=${encodeURIComponent(firstSlug)}`}
-                    className={heroNavLinkClassName}
-                  >
-                    Playground
-                  </Link>
-                </div>
-              </div>
-
-              <p className="max-w-[65ch] text-pretty text-sm leading-relaxed tracking-tight sm:text-2xl">
-                {items.length} free and open-source WebGL orb
-                {items.length === 1 ? "" : "s"}, built with React, TypeScript, and shadcn. Every
-                orb reacts to agent state and exposes its shader params. Install one, copy the
-                code, and make it yours.
-              </p>
-            </div>
-
-            <div className="flex flex-col gap-3">
-              <HeroInstallCommand installCommand={installCommand} />
-            </div>
-          </div> */}
-
 
           <div className="flex flex-col gap-8 items-center justify-center">
             <motion.div {...fadeIn(0)}>
@@ -309,7 +244,7 @@ export function OrbGallery({ items }: { items: OrbDetailsCard[] }) {
       <motion.aside
         {...enterFrom(GRID_START + CARD_STAGGER_CAP * CARD_STEP)}
         aria-label="Credits"
-        className="mx-auto mt-6 flex w-full max-w-4xl flex-col items-center gap-4 text-center 2xl:max-w-5xl sm:my-30"
+        className="mx-auto flex w-full max-w-4xl flex-col items-center gap-4 text-center 2xl:max-w-5xl my-20 sm:my-30"
       >
         <a
           href={XORDEV_URL}

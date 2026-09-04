@@ -113,14 +113,6 @@ const SHARED_PROP_ROWS: ReadonlyArray<readonly [string, string, string, string]>
   ]
 ];
 
-const dotRail = (
-  <div className="flex items-center gap-1 overflow-hidden">
-    {Array.from({ length: 150 }).map((_, i) => (
-      <div key={i} className="size-0.5 shrink-0 rounded-full bg-(--color-dot-faint)" />
-    ))}
-  </div>
-);
-
 function Section({
   heading,
   intro,
@@ -132,7 +124,6 @@ function Section({
 }) {
   return (
     <>
-      {/* {dotRail} */}
       {/* pt-6: these sections stack directly on one another, and pt-1 left
           the next heading sitting on the previous table. */}
       <div className="grid gap-3 pt-6">

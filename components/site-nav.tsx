@@ -20,7 +20,7 @@ export function SiteNav() {
   return (
     <nav
       aria-label="Site"
-      className="hidden items-center gap-0.5 rounded-xl bg-preset p-1 sm:flex"
+      className="hidden h-9 items-center gap-0.5 rounded-xl bg-preset p-1 sm:flex"
     >
       {LINKS.map((link) => {
         const active = pathname === link.match || pathname.startsWith(`${link.match}/`);
