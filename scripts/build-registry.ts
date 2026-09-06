@@ -130,6 +130,15 @@ async function build() {
     "utf-8"
   );
 
+  /*
+    GitHub-address installs (`npx shadcn add zzzzshawn/orbkit/shdr-01`) read
+    this manifest from the repository root and fetch each file straight from
+    the repo, so every item lists its built sources by repo path with the
+    consumer-side target. Content stays in the per-item JSON under public/r.
+  */
+  const repoFiles = (files: RegistryFile[]) =>
+    files.map((file) => ({ path: `public/r/${file.path}`, type: file.type, target: file.path }));
+
   const registryItems = [
     ...orbRegistryItems.map((item) => ({
       name: item.name,
@@ -138,6 +147,7 @@ async function build() {
       description: item.description,
       dependencies: item.dependencies,
       registryDependencies: item.registryDependencies,
+      files: repoFiles(item.files),
       url: item.url
     })),
     {
@@ -147,6 +157,7 @@ async function build() {
       description: allItem.description,
       dependencies: allItem.dependencies,
       registryDependencies: allItem.registryDependencies,
+      files: repoFiles(allItem.files),
       url: `/r/${allRegistryItemName}.json`
     }
   ];
