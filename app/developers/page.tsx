@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import { DocsCode, DocsSection, DocsShell } from "@/components/docs-shell";
 import { API_VERSION, absolute, buildApiIndex } from "@/lib/agent-docs";
-import { SITE_NAME } from "@/lib/site-config";
+import { SITE_NAME, shadcnAddCommand } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   title: "Developer API",
@@ -64,7 +64,7 @@ export default function DevelopersPage() {
         <DocsCode lang="jsonc">{`{
   "slug": "shdr-11",
   "name": "Shdr11",
-  "install": "npx shadcn@latest add @orbkit/shdr-11",
+  "install": "${shadcnAddCommand("shdr-11")}",
   "params": [
     { "key": "speed", "label": "…", "min": 0.015, "max": 10, "step": 0.05, "default": 0.5, "integrate": true },
     …

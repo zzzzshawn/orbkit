@@ -3,7 +3,14 @@ import Link from "next/link";
 
 import { DocsCode, DocsSection, DocsShell } from "@/components/docs-shell";
 import { orbRegistry } from "@/lib/registry-config";
-import { SITE_DESCRIPTION, SITE_NAME, shadcnAddCommand } from "@/lib/site-config";
+import {
+  REGISTRY_ALIAS_SNIPPET,
+  REGISTRY_NAMESPACE,
+  SITE_DESCRIPTION,
+  SITE_NAME,
+  shadcnAddCommand,
+  shadcnAddNamespacedCommand
+} from "@/lib/site-config";
 
 export const metadata: Metadata = {
   title: "Introduction",
@@ -43,10 +50,19 @@ export default function IntroductionPage() {
       </DocsSection>
 
       <DocsSection heading="Install">
-        <p>Add an orb through the shadcn CLI. The shared runtime comes along automatically.</p>
+        <p>
+          Add an orb through the shadcn CLI. The command points straight at the public repository,
+          so there is nothing to configure, and the shared runtime comes along automatically.
+        </p>
         <DocsCode lang="bash">{shadcnAddCommand(firstSlug)}</DocsCode>
         <p className="text-fg-muted">Or install every orb at once:</p>
         <DocsCode lang="bash">{shadcnAddCommand("all")}</DocsCode>
+        <p className="text-fg-muted">
+          Prefer the <code>@{REGISTRY_NAMESPACE}</code> namespace? Add the registry to your{" "}
+          <code>components.json</code> once, then install by name:
+        </p>
+        <DocsCode lang="jsonc">{REGISTRY_ALIAS_SNIPPET}</DocsCode>
+        <DocsCode lang="bash">{shadcnAddNamespacedCommand(firstSlug)}</DocsCode>
       </DocsSection>
 
       <DocsSection heading="Agent states">

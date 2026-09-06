@@ -19,7 +19,8 @@ import {
   SITE_DESCRIPTION,
   SITE_HOMEPAGE,
   SITE_NAME,
-  shadcnAddCommand
+  shadcnAddCommand,
+  shadcnAddNamespacedCommand
 } from "@/lib/site-config";
 
 export const API_VERSION = "1.0.0";
@@ -334,9 +335,11 @@ Do not use it for a static icon, a chart, or anything that has to render on the 
 
 1. Install one orb (the shared runtime comes along automatically):
 
-   ${shadcnAddUrlCommand(first.slug)}
+   ${shadcnAddCommand(first.slug)}
 
-   Or, if the project's components.json aliases the @${REGISTRY_NAMESPACE} registry: ${shadcnAddCommand(first.slug)}
+   By URL: ${shadcnAddUrlCommand(first.slug)}
+
+   Or, once the project's components.json aliases the @${REGISTRY_NAMESPACE} registry (${SITE_HOMEPAGE}/r/{name}.json): ${shadcnAddNamespacedCommand(first.slug)}
 
 2. Render it and map your agent's status onto its state:
 
@@ -412,7 +415,7 @@ ${SITE_NAME} is ${SITE_DESCRIPTION.replace(/^Orbkit is /, "")}
 ## How to call it
 
 1. Put ${absolute("/skill.md")} and ${absolute("/skill/recipes.md")} in the skills folder the agent already reads.
-2. Install an orb: \`${shadcnAddUrlCommand(first.slug)}\`
+2. Install an orb: \`${shadcnAddCommand(first.slug)}\`
 3. Ask for the UI. One orb, driven by state.
 
 \`\`\`tsx

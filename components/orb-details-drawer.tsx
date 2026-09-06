@@ -26,7 +26,7 @@ import { MeasuredCliManualDotRail } from "@/components/orb-details-drawer/measur
 import { HIDE_CODE_SCROLLBARS } from "@/lib/hide-code-scrollbar-class";
 import { OrbPropsReference } from "@/lib/orb-props-reference";
 import { orbVariantMap } from "@/lib/orb-component-map";
-import { scopedItemName } from "@/lib/site-config";
+import { registryItemAddress } from "@/lib/site-config";
 import type { OrbState } from "@/orbs/core/orbkit-core";
 import Link from "next/link";
 import { memo, useCallback, useMemo, useRef, useState, type ReactNode } from "react";
@@ -155,7 +155,7 @@ export function OrbDetailsDrawer({
   const tabSlideTransition = { type: "spring" as const, stiffness: 420, damping: 38 } as const;
   const [packageManager, setPackageManager] = useState<ShadcnPackageManager>("pnpm");
   const installCommand = selected
-    ? shadcnRegistryAddCommand(packageManager, scopedItemName(selected.slug))
+    ? shadcnRegistryAddCommand(packageManager, registryItemAddress(selected.slug))
     : "";
   const demoUsageCode = selected
     ? `import { ${selected.componentName} } from "@/components/ui/${selected.slug}";

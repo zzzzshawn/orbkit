@@ -7,8 +7,11 @@ Built the same way as [Dot Matrix](https://dotmatrix.zzzzshawn.cloud) — a docs
 registry, with the components living in-repo as plain source files.
 
 ```bash
-npx shadcn@latest add @orbkit/shdr-11
+npx shadcn@latest add zzzzshawn/orbkit/shdr-11
 ```
+
+That form needs no setup. With `"registries": { "@orbkit": "https://orbkit.zzzzshawn.cloud/r/{name}.json" }`
+in your `components.json`, `npx shadcn@latest add @orbkit/shdr-11` works too.
 
 > The registry namespace, product name, and homepage all come from
 > [`lib/site-config.ts`](lib/site-config.ts). Renaming the library is a one-file edit plus

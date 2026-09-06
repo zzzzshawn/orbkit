@@ -161,7 +161,7 @@ export default async function OpenGraphImage() {
               borderRadius: 16,
               backgroundColor: PRESET,
               fontFamily: "Geist Mono",
-              fontSize: 23,
+              fontSize: 20,
               color: FG,
               letterSpacing: "-0.01em"
             }}

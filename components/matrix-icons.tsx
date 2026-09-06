@@ -200,15 +200,15 @@ export type ShadcnPackageManager = "npm" | "yarn" | "bun" | "pnpm";
 
 export const SHADCN_PACKAGE_MANAGERS: ShadcnPackageManager[] = ["npm", "yarn", "bun", "pnpm"];
 
-export function shadcnRegistryAddCommand(pm: ShadcnPackageManager, scopedItemName: string) {
+export function shadcnRegistryAddCommand(pm: ShadcnPackageManager, itemAddress: string) {
   switch (pm) {
     case "yarn":
-      return `yarn dlx shadcn@latest add ${scopedItemName}`;
+      return `yarn dlx shadcn@latest add ${itemAddress}`;
     case "bun":
-      return `bunx shadcn@latest add ${scopedItemName}`;
+      return `bunx shadcn@latest add ${itemAddress}`;
     case "pnpm":
-      return `pnpm dlx shadcn@latest add ${scopedItemName}`;
+      return `pnpm dlx shadcn@latest add ${itemAddress}`;
     default:
-      return `npx shadcn@latest add ${scopedItemName}`;
+      return `npx shadcn@latest add ${itemAddress}`;
   }
 }
