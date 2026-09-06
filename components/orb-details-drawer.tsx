@@ -26,6 +26,7 @@ import { MeasuredCliManualDotRail } from "@/components/orb-details-drawer/measur
 import { HIDE_CODE_SCROLLBARS } from "@/lib/hide-code-scrollbar-class";
 import { OrbPropsReference } from "@/lib/orb-props-reference";
 import { orbVariantMap } from "@/lib/orb-component-map";
+import type { OrbCredit } from "@/lib/registry-config";
 import { registryItemAddress } from "@/lib/site-config";
 import type { OrbState } from "@/orbs/core/orbkit-core";
 import Link from "next/link";
@@ -62,6 +63,8 @@ export interface OrbDetailsCard {
   description: string;
   componentName: string;
   sourceCode: string;
+  /** Set when the shader was ported from someone else's work. */
+  credit?: OrbCredit;
 }
 
 export type ExamplePreviewId = "ex-all";
@@ -379,6 +382,7 @@ ${lines.join("\n")}
                       selectedSlug={selected?.slug}
                       selectedTitle={selected?.title}
                       selectedDescription={selected?.description}
+                      credit={selected?.credit}
                       preview={preview}
                       state={state}
                       onStateChange={onStateChange}

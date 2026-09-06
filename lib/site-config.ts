@@ -17,7 +17,7 @@ export const SITE_HOMEPAGE =
   process.env.REGISTRY_HOMEPAGE ?? "https://orbkit.zzzzshawn.cloud";
 
 export const SITE_DESCRIPTION =
-  "Orbkit is a React component library of WebGL shader orbs — expressive, state-driven orbs you install via the shadcn registry and own as local code.";
+  "Orbkit is a React component library of WebGL shader orbs for AI and voice agent states, installed as local code through the shadcn registry. Free for non-commercial use with attribution; the runtime and original orbs are MIT.";
 
 export const CREATOR_NAME = "zzzzshawn";
 export const CREATOR_URL = "https://x.com/zzzzshawn/";

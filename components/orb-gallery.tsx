@@ -142,6 +142,7 @@ export function OrbGallery({ items }: { items: OrbDetailsCard[] }) {
 
   const firstSlug = items[0]?.slug ?? "shdr-11";
   const installCommand = shadcnAddCommand(firstSlug);
+  const creditedCount = items.filter((item) => item.credit).length;
 
   return (
     <main className="relative mx-auto flex min-h-dvh w-full max-w-[1400px] flex-col gap-6 px-4 py-8 sm:px-6 sm:py-10 lg:gap-10 lg:px-8">
@@ -160,8 +161,8 @@ export function OrbGallery({ items }: { items: OrbDetailsCard[] }) {
                 {...enterFrom(HEADER_STEP * 2)}
                 className="max-w-sm text-center text-base tracking-tight"
               >
-                A collection of free and open-source WebGL orbs, built with React, TypeScript,
-                and shadcn.
+                A collection of free WebGL shader orbs for agent states, built with React,
+                TypeScript, and shadcn.
               </motion.p>
             </div>
           </div>
@@ -262,7 +263,7 @@ export function OrbGallery({ items }: { items: OrbDetailsCard[] }) {
           />
         </a>
         <p className="max-w-prose text-pretty text-sm leading-relaxed tracking-tight text-fg-muted sm:text-base">
-          Credits: most of these orbs are referenced from shaders by{" "}
+          Credits: {creditedCount} of these orbs are ported from shaders by{" "}
           <a
             href={XORDEV_URL}
             target="_blank"
@@ -271,8 +272,9 @@ export function OrbGallery({ items }: { items: OrbDetailsCard[] }) {
           >
             @XorDev
           </a>{" "}
-          on X. Go check out his account. It is a goldmine of shader art and
-          techniques.
+          on X, with his permission. They are for non-commercial use with attribution, and
+          each one says so in its source. Go check out his account. It is a goldmine of shader
+          art and techniques.
         </p>
       </motion.aside>
 

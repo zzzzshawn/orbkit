@@ -196,6 +196,17 @@ export function SoundOffIcon(props: MatrixDotIconProps) {
   );
 }
 
+/** A rounded triangle with a mark in it, for notices that should be read before acting. */
+export function WarningIcon(props: MatrixDotIconProps) {
+  return (
+    <IconFrame {...props}>
+      <path d="M9 2.75 16.25 15.25H1.75Z" />
+      <path d="M9 7v3.75" />
+      <circle cx="9" cy="13.25" r="0.5" fill="currentColor" />
+    </IconFrame>
+  );
+}
+
 export type ShadcnPackageManager = "npm" | "yarn" | "bun" | "pnpm";
 
 export const SHADCN_PACKAGE_MANAGERS: ShadcnPackageManager[] = ["npm", "yarn", "bun", "pnpm"];

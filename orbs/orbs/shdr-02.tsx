@@ -1,4 +1,9 @@
 /*
+ * Shader by XorDev (https://x.com/XorDev), ported for Orbkit with the author's
+ * permission. Non-commercial use only, with attribution to XorDev; keep this
+ * notice with the file. Orbkit's runtime (orbkit-core.tsx) is MIT-licensed.
+ */
+/*
  * Deliberately not a `"use client"` module — see the note in `shdr-11.tsx`.
  */
 import { ShaderOrb, type OrbVariant, type ShaderOrbProps } from "../core/orbkit-core";

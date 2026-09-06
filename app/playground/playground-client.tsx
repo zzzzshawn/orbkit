@@ -7,6 +7,8 @@ import { CopyButton } from "@/components/copy-button";
 import { HeroInstallCommand } from "@/components/hero-install-command";
 import { ShikiCodeView } from "@/components/shiki-code-view";
 import { orbComponentMap, orbVariantMap } from "@/lib/orb-component-map";
+import type { OrbCredit } from "@/lib/registry-config";
+import { WarningIcon } from "@/components/matrix-icons";
 import { shadcnAddCommand } from "@/lib/site-config";
 import {
   ORB_STATES,
@@ -23,6 +25,8 @@ export interface PlaygroundOrbOption {
   slug: string;
   title: string;
   componentName: string;
+  /** Set when the shader was ported from someone else's work. */
+  credit?: OrbCredit;
 }
 
 interface PlaygroundClientProps {
@@ -500,6 +504,8 @@ export function PlaygroundClient({ initialSlug, initialState, orbs }: Playground
     copyButtonRef.current?.click();
   }, []);
 
+  const credit = orbs.find((orb) => orb.slug === slug)?.credit;
+
   return (
     <main className="mx-auto flex min-h-dvh w-full flex-1 flex-col p-2">
       <section className="relative flex h-[98dvh] flex-col overflow-hidden rounded-lg bg-surface">
@@ -525,9 +531,34 @@ export function PlaygroundClient({ initialSlug, initialState, orbs }: Playground
         <div className="absolute bottom-6 left-1/2 z-20 -translate-x-1/2">
           <HeroInstallCommand installCommand={shadcnAddCommand(slug)} />
         </div>
+        {/*
+          The credit for a ported shader sits in the bottom-left corner, level
+          with the install command. Below lg it lifts above the command so the
+          two never cross on narrow viewports.
+        */}
+        {credit ? (
+          <div className="absolute bottom-20 left-8 z-20 flex w-max max-w-[40ch] items-start gap-2.5 rounded-xl bg-preset px-3.5 py-2.5 lg:bottom-6">
+            <WarningIcon className="mt-0.5 size-4 shrink-0 text-fg-strong" />
+            <div className="flex flex-col gap-0.5">
+              <span className="text-sm tracking-tight text-fg">
+                Shader by{" "}
+                <a
+                  href={credit.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-fg-strong underline decoration-fg-dim/60 underline-offset-4 transition-colors duration-150 ease-out hover:decoration-link-hover"
+                >
+                  @{credit.handle}
+                </a>
+                , ported with permission.
+              </span>
+              <span className="text-xs leading-relaxed text-fg-muted">{credit.license}</span>
+            </div>
+          </div>
+        ) : null}
 
         <div className="absolute left-4 top-32 shrink-0 px-4 pb-4">
-          <div className="mx-auto w-max rounded-lg p-3">
+          <div className="relative w-max rounded-lg p-3">
             <div className="absolute -top-8 mb-2 flex justify-end">
               <CopyButton
                 ref={copyButtonRef}

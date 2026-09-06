@@ -60,6 +60,9 @@ async function build() {
       const componentSource = rewriteImports(
         await readFile(path.join(orbsRoot, "orbs", orb.fileName), "utf-8")
       );
+      if (orb.credit && !componentSource.includes(`Shader by ${orb.credit.author}`)) {
+        throw new Error(`${orb.fileName} is credited to ${orb.credit.author} but carries no credit notice`);
+      }
       const componentPath = `components/ui/${orb.fileName}`;
 
       // Order matters: shadcn writes files in sequence, and the orb imports
@@ -79,7 +82,7 @@ async function build() {
         description: orb.description,
         dependencies: orb.dependencies,
         registryDependencies: [],
-        meta: { renderer: "webgl" },
+        meta: { renderer: "webgl", ...(orb.credit ? { credit: orb.credit } : {}) },
         files
       };
 
@@ -112,6 +115,7 @@ async function build() {
     }
   }
 
+  const creditedCount = orbRegistry.filter((orb) => orb.credit).length;
   const allItem = {
     $schema: "https://ui.shadcn.com/schema/registry-item.json",
     name: allRegistryItemName,
@@ -120,7 +124,10 @@ async function build() {
     description: "Installs every orb and the shared WebGL runtime in one command.",
     dependencies: [],
     registryDependencies: [],
-    meta: { renderer: "webgl" },
+    meta: {
+      renderer: "webgl",
+      note: `Includes ${creditedCount} shaders by XorDev: non-commercial use only, with attribution. See CREDITS.md.`
+    },
     files: [...allFilesByPath.values()]
   };
 

@@ -1,7 +1,7 @@
 {
   "name": "orbkit",
   "version": "0.1.0",
-  "license": "MIT",
+  "license": "SEE LICENSE IN README.md",
   "private": true,
   "engines": {
     "node": ">=20.9.0"

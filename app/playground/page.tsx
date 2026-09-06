@@ -22,7 +22,8 @@ export default async function PlaygroundPage({
       orbs={orbRegistry.map((entry) => ({
         slug: entry.slug,
         title: entry.title,
-        componentName: entry.componentName
+        componentName: entry.componentName,
+        credit: entry.credit
       }))}
     />
   );

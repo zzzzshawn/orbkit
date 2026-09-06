@@ -5,6 +5,8 @@ import Link from "next/link";
 import { memo, type ReactNode } from "react";
 
 import { DRAWER_CONTENT_REVEAL } from "@/components/orb-details-drawer.constants";
+import { WarningIcon } from "@/components/matrix-icons";
+import type { OrbCredit } from "@/lib/registry-config";
 import { ORB_STATES, type OrbState } from "@/orbs/core/orbkit-core";
 
 const STATE_LABELS: Record<OrbState, string> = {
@@ -17,6 +19,7 @@ interface DrawerPreviewPaneProps {
   selectedSlug?: string;
   selectedTitle?: string;
   selectedDescription?: string;
+  credit?: OrbCredit;
   preview: ReactNode;
   state: OrbState;
   onStateChange: (state: OrbState) => void;
@@ -34,6 +37,7 @@ export const DrawerPreviewPane = memo(function DrawerPreviewPane({
   selectedSlug,
   selectedTitle,
   selectedDescription,
+  credit,
   preview,
   state,
   onStateChange
@@ -153,6 +157,30 @@ export const DrawerPreviewPane = memo(function DrawerPreviewPane({
           >
             {selectedDescription}
           </motion.p>
+        ) : null}
+
+        {credit ? (
+          <motion.div
+            variants={revealItem}
+            className="mt-3 flex w-max max-w-full items-start gap-2.5 rounded-xl bg-preset px-3.5 py-2.5"
+          >
+            <WarningIcon className="theme-text-strong mt-0.5 size-4 shrink-0" />
+            <div className="flex flex-col gap-0.5">
+            <span className="theme-text text-sm tracking-tight">
+              Shader by{" "}
+              <Link
+                href={credit.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="theme-text-strong underline decoration-fg-dim/60 underline-offset-4 transition-colors duration-150 ease-out hover:decoration-link-hover"
+              >
+                @{credit.handle}
+              </Link>
+              , ported with permission.
+            </span>
+            <span className="theme-text-muted text-xs leading-relaxed">{credit.license}</span>
+            </div>
+          </motion.div>
         ) : null}
       </motion.div>
     </motion.section>

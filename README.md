@@ -1,7 +1,11 @@
 # Orbkit
 
-WebGL shader orbs for React, distributed through a shadcn registry. Install an orb, own the
+WebGL shader orbs for React, distributed through a shadcn registry. Install an orb, keep the
 source, tune every uniform.
+
+Free for non-commercial use with attribution: 19 of the orbs are ported from shaders by
+[@XorDev](https://x.com/XorDev) with his permission and carry his terms; the runtime and the
+other 14 orbs are MIT. See [Credits and licensing](#credits-and-licensing).
 
 Built the same way as [Dot Matrix](https://dotmatrix.zzzzshawn.cloud) — a docs site that *is* the
 registry, with the components living in-repo as plain source files.
@@ -267,6 +271,16 @@ Run that against a scratch project with a `components.json` and confirm both fil
 `components/ui/` and the project typechecks. That is the only check that exercises the whole
 path — path rewriting, file typing, and alias resolution.
 
-## License
+## Credits and licensing
 
-MIT
+Two licences apply, per file:
+
+- **MIT**: the runtime (`orbkit-core.tsx`), this site, the build scripts, and the original orbs
+  (shdr-11, shdr-12, shdr-13, shdr-14, shdr-16, shdr-17, shdr-21, shdr-23, shdr-24, shdr-27, shdr-29, shdr-30, shdr-32, shdr-33). See [LICENSE](LICENSE).
+- **Non-commercial use only, with attribution to XorDev**: the orbs ported from shaders by
+  [@XorDev](https://x.com/XorDev), used with his permission (shdr-01, shdr-02, shdr-03, shdr-04, shdr-05, shdr-06, shdr-07, shdr-08, shdr-09, shdr-10, shdr-15, shdr-18, shdr-19, shdr-20, shdr-22, shdr-25, shdr-26, shdr-28, shdr-31). Each of these
+  files starts with a notice that must stay with any copy, the registry marks them with a
+  `credit` field, and the site and API surface it. See [CREDITS.md](CREDITS.md).
+
+Adding a shader that is not your own means asking its author first. XorDev asked to be
+consulted before any more of his work is included.

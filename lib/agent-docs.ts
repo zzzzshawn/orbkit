@@ -10,7 +10,7 @@
  * /developers.
  */
 import { orbVariantMap } from "@/lib/orb-component-map";
-import { orbRegistry, type OrbRegistryEntry } from "@/lib/registry-config";
+import { orbRegistry, type OrbCredit, type OrbRegistryEntry } from "@/lib/registry-config";
 import {
   CREATOR_NAME,
   CREATOR_URL,
@@ -168,6 +168,10 @@ export interface CatalogEntry {
   file: string;
   importPath: string;
   dependencies: string[];
+  /** Set when the shader is ported from someone else's work, with its terms. */
+  credit: OrbCredit | null;
+  /** "MIT" for original orbs, otherwise the credited author's terms. */
+  license: string;
   params: CatalogParam[];
   colors: CatalogColor[];
   statePresets: Partial<Record<string, Record<string, number>>>;
@@ -191,6 +195,8 @@ function toEntry(orb: OrbRegistryEntry): CatalogEntry {
     file,
     importPath: `@/${file.replace(/\.tsx$/, "")}`,
     dependencies: orb.dependencies,
+    credit: orb.credit ?? null,
+    license: orb.credit ? orb.credit.license : "MIT",
     params: (variant?.params ?? []).map((p) => ({
       key: p.key,
       label: p.label,
@@ -287,9 +293,14 @@ function machineReadableLinks(): string {
 
 function catalogTable(entries: CatalogEntry[]): string {
   const rows = entries.map(
-    (e) => `| ${e.slug} | ${e.name} | ${e.note} | ${e.params.length} | ${e.colors.map((c) => c.key).join(", ") || "—"} |`
+    (e) =>
+      `| ${e.slug} | ${e.name} | ${e.note} | ${e.params.length} | ${e.colors.map((c) => c.key).join(", ") || "—"} | ${e.credit ? `@${e.credit.handle}, non-commercial` : "Orbkit, MIT"} |`
   );
-  return ["| Slug | Component | Look | Params | Colours |", "| --- | --- | --- | --- | --- |", ...rows].join("\n");
+  return [
+    "| Slug | Component | Look | Params | Colours | Shader by |",
+    "| --- | --- | --- | --- | --- | --- |",
+    ...rows
+  ].join("\n");
 }
 
 function chooserTable(): string {
@@ -393,7 +404,9 @@ Every orb has a live playground with all three states and every param as a slide
 
 ## Credits
 
-Built by ${CREATOR_NAME} (${CREATOR_URL}). Source: ${REPO_URL}. MIT.
+Built by ${CREATOR_NAME} (${CREATOR_URL}). Source: ${REPO_URL}.
+
+Licensing: the runtime and the original orbs are MIT. ${orbRegistry.filter((orb) => orb.credit).length} orbs are ported from shaders by XorDev (https://x.com/XorDev) with his permission and are for non-commercial use only, with attribution. Each of those files carries the notice, and this catalog marks them with a credit field and a license field. Full list: ${REPO_URL}/blob/main/CREDITS.md
 `;
 }
 
@@ -460,6 +473,7 @@ Read the orb's params from the API and pass a statePresets override for thinking
 - Developer API: ${absolute("/developers")}
 - Playground: ${absolute("/playground")}
 - Source: ${REPO_URL}
+- Credits and licensing: ${REPO_URL}/blob/main/CREDITS.md
 `;
 }
 
@@ -729,7 +743,10 @@ export function buildOpenApi() {
       description:
         "Public read API. Version 1 is URL-prefixed at /api/v1/. No authentication. Orb source files are copied with the shadcn CLI; this API describes them, it does not install them.",
       version: API_VERSION,
-      license: { name: "MIT", url: `${REPO_URL}/blob/main/LICENSE` },
+      license: {
+        name: "MIT for the runtime and original orbs; non-commercial with attribution for shaders ported from XorDev",
+        url: `${REPO_URL}/blob/main/CREDITS.md`
+      },
       contact: { name: CREATOR_NAME, url: CREATOR_URL }
     },
     servers: [{ url: SITE_HOMEPAGE, description: "Production" }],

@@ -9,6 +9,7 @@ export default async function HomePage() {
       title: orb.title,
       description: orb.description,
       componentName: orb.componentName,
+      credit: orb.credit,
       // Read here rather than fetched when the drawer opens: the Manual tab
       // shows the exact text shadcn installs, and the drawer should not have a
       // loading state for content that is already on disk at build time.

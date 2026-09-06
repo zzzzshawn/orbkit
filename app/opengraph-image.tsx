@@ -150,7 +150,7 @@ export default async function OpenGraphImage() {
             WebGL shader orbs for React.
           </div>
           <div style={{ marginTop: 14, fontSize: 24, fontWeight: 500, color: DIM, lineHeight: 1.35 }}>
-            33 expressive, state-driven orbs for voice and AI agents, installed as local code you own.
+            33 expressive, state-driven orbs for voice and AI agents, installed as local code you can tune.
           </div>
           <div
             style={{

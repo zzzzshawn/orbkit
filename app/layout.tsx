@@ -91,7 +91,7 @@ export const metadata: Metadata = {
     "shadcn/ui",
     "registry",
     "Tailwind CSS",
-    "open source"
+    "agent UI"
   ],
   authors: [{ name: CREATOR_NAME, url: CREATOR_URL }],
   creator: CREATOR_NAME,

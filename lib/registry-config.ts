@@ -1,3 +1,30 @@
+/**
+ * Provenance for an orb whose shader was ported from someone else's work.
+ * Absent means the orb is original Orbkit work and ships under the MIT
+ * licence like the runtime.
+ */
+export interface OrbCredit {
+  /** The original author, as displayed. */
+  author: string;
+  /** Their handle on X, without the @. */
+  handle: string;
+  /** The original post when known, otherwise the author's profile. */
+  url: string;
+  /** The terms these files ship under, repeated verbatim in every copy. */
+  license: string;
+}
+
+/**
+ * XorDev's golfed shaders, ported with his permission (DM, 2026-09-06): keep
+ * the credit with each piece, and ask before adding more of his work.
+ */
+export const XORDEV_CREDIT: OrbCredit = {
+  author: "XorDev",
+  handle: "XorDev",
+  url: "https://x.com/XorDev",
+  license: "Non-commercial use only, with attribution to XorDev."
+};
+
 export interface OrbRegistryEntry {
   slug: string;
   title: string;
@@ -6,11 +33,14 @@ export interface OrbRegistryEntry {
   fileName: string;
   /** npm packages the installed component needs. Orbs are dependency-free. */
   dependencies: string[];
+  /** Set when the shader was ported from someone else's work; see CREDITS.md. */
+  credit?: OrbCredit;
 }
 
 export const orbRegistry: OrbRegistryEntry[] = [
   {
     slug: "shdr-01",
+    credit: XORDEV_CREDIT,
     title: "SHDR-01",
     description:
       "A cut-glass orb whose own shell does the dispersing: rays grazing the turbulence-warped sphere ride it for a long arc so the limb glows, interior sheets split into rainbow striations through per-channel palette phases, and an analytic silhouette keeps the edge knife-sharp.",
@@ -20,6 +50,7 @@ export const orbRegistry: OrbRegistryEntry[] = [
   },
   {
     slug: "shdr-02",
+    credit: XORDEV_CREDIT,
     title: "SHDR-02",
     description:
       "Ornate scrollwork wrapped onto a sphere: ten colour layers, each folded by a nine-step feedback warp, sampled through a stereographic projection of the orb's dome so the filigree compresses toward the rim.",
@@ -29,6 +60,7 @@ export const orbRegistry: OrbRegistryEntry[] = [
   },
   {
     slug: "shdr-03",
+    credit: XORDEV_CREDIT,
     title: "SHDR-03",
     description:
       "A turbulent belt of light girdling the ball, contoured in rainbow along its own distance field: the density is a sphere plus a plane added together, so only their intersection lights up — a great circle dragged out of true by eight octaves of warp. The shell term reads the raw point and the plane term reads the warped one, which is what keeps the ball a clean sphere while the belt writhes across it, and the rotation axis is steered by the previous step's density, so the belt's tilt settles as the ray closes on the surface.",
@@ -38,6 +70,7 @@ export const orbRegistry: OrbRegistryEntry[] = [
   },
   {
     slug: "shdr-04",
+    credit: XORDEV_CREDIT,
     title: "SHDR-04",
     description:
       "A hollow shell of light, faceted by a voxel lattice and approached but never reached: the march sphere-traces a shell at a tenth of the remaining distance per step, so it closes on the surface asymptotically from outside and the accumulated one-over-step is dominated by the last few samples. All six turbulence octaves quantize on the SAME fixed lattice pitch — only the phase multiplier changes — so the displacement is piecewise constant and the shell facets at one crisp scale rather than fractally. Position paints the colour, washing toward a white floor with depth.",
@@ -47,6 +80,7 @@ export const orbRegistry: OrbRegistryEntry[] = [
   },
   {
     slug: "shdr-05",
+    credit: XORDEV_CREDIT,
     title: "SHDR-05",
     description:
       "Rainbow rings travelling through a lattice of lenses: componentwise tangent has a pole every PI, so the plane is cut into a square lattice of cells whose walls throw the coordinate to infinity, and adding the position back to its own tangent offsets every cell so each shows a different part of the ring field instead of tiling one image. One cosine of the length of that, at three channel phases under a radian apart, gives white band cores with coloured shoulders — and the tangent is softened so the rings crowd to a finite limit at the walls rather than to unbounded bandwidth no supersampling could resolve.",
@@ -56,6 +90,7 @@ export const orbRegistry: OrbRegistryEntry[] = [
   },
   {
     slug: "shdr-06",
+    credit: XORDEV_CREDIT,
     title: "SHDR-06",
     description:
       "A hundred glowing lattices stacked through the depth of the ball, interfering: each layer is a rectangular grid of points lit by the reciprocal of a sine field, seeded with its own frequency pair, and the beat between their spacings is the image. The layers are projected from the point the view ray reaches at each depth, closed-form, so parallax is zero at the centre and strongest at the limb and the stack shears against itself as it drifts. Hue runs with layer index, so depth through the stack reads as colour.",
@@ -65,6 +100,7 @@ export const orbRegistry: OrbRegistryEntry[] = [
   },
   {
     slug: "shdr-07",
+    credit: XORDEV_CREDIT,
     title: "SHDR-07",
     description:
       "A twist wave travelling out through the ball, wound around a lit polar column: an exact Rodrigues rotation whose angle is the sample's own radius minus the clock, so every spherical shell is wound by a different amount and the winding travels outward — torsion in the literal sense, twist per unit radius. The density is measured from the twist axis rather than from the centre, so the step collapses along the pole and the axis burns as a spine, and the march colour-codes itself with green by depth and blue by step index.",
@@ -74,6 +110,7 @@ export const orbRegistry: OrbRegistryEntry[] = [
   },
   {
     slug: "shdr-08",
+    credit: XORDEV_CREDIT,
     title: "SHDR-08",
     description:
       "Mother-of-pearl wrapped around the ball: a ten-octave feedback warp whose octaves each boil at their own multiple of the clock, banded by the cotangent of the warped coordinate so crests saturate flat and valleys floor to black, with the layers sampled through a stereographic projection of the dome so they compress toward the limb. Every band carries its own hue from a cosine palette keyed to the band coordinate, rotated further by the viewing angle the way thin-film interference actually behaves, and the golfed listing's uneven per-channel phase breaks each band edge into a warm shoulder and a deep blue one.",
@@ -83,6 +120,7 @@ export const orbRegistry: OrbRegistryEntry[] = [
   },
   {
     slug: "shdr-09",
+    credit: XORDEV_CREDIT,
     title: "SHDR-09",
     description:
       "Torn rings of rainbow light worn as the ball's own latitudes: ten concentric rings, each re-warping the original point through its own cell-quantized distortion so they tear differently instead of nesting, with an asymmetric falloff that lights every ring's outer shoulder three times as hard as its inner one. The hue phase divides by the distance to the ring, so a full rainbow compresses into a fringe exactly where the glow peaks. Radius maps to the polar angle rather than through a stereographic wrap, which foreshortens the rings exactly and lets the dome roll freely.",
@@ -92,6 +130,7 @@ export const orbRegistry: OrbRegistryEntry[] = [
   },
   {
     slug: "shdr-10",
+    credit: XORDEV_CREDIT,
     title: "SHDR-10",
     description:
       "A lattice of light knitted into the ball's own skin: the listing's tunnel unwrap rewrites each sample as angle, height and radius-minus-shell, and reading that radius from the centre rather than from an axis turns its pipe into a sphere without another line changing. The density is small only where all three cosines of the unwrapped point sit at one AND the sample is on the shell, so a 3D lattice is cut by the ball's surface and what survives is a knitted net. Every march step carries its own warp and colour phase, so forty samples layer into gauze instead of stacking one surface forty times.",
@@ -137,6 +176,7 @@ export const orbRegistry: OrbRegistryEntry[] = [
   },
   {
     slug: "shdr-15",
+    credit: XORDEV_CREDIT,
     title: "SHDR-15",
     description:
       "An iridescent particle-track web worn as the ball's skin: ten micro-layers anchored analytically to the sphere's entry point, a minus-90-degree Rodrigues rotation whose axis jitters per layer through field-magnitude feedback, and a march that sticks on concentric field shells where 1/d blows up into bright threads.",
@@ -164,6 +204,7 @@ export const orbRegistry: OrbRegistryEntry[] = [
   },
   {
     slug: "shdr-18",
+    credit: XORDEV_CREDIT,
     title: "SHDR-18",
     description:
       "A crystal folded out of one eighth of space, tumbling: an absolute value on the sample reflects all eight octants together and a component-wise max against its own rolled swizzle creases the diagonals, so the field carries the full symmetry of an octahedron without a single mirror plane being written down. Both folds happen after an exact minus-90-degree Rodrigues rotation about an axis that wanders on the clock, so the mirror planes are carried around with it and the crystal genuinely tumbles rather than being a static mandala with a moving texture. Depth along the ray paints the hue.",
@@ -173,6 +214,7 @@ export const orbRegistry: OrbRegistryEntry[] = [
   },
   {
     slug: "shdr-19",
+    credit: XORDEV_CREDIT,
     title: "SHDR-19",
     description:
       "A dot screen wrapped on the ball, every dot breathing on its own phase: a cellular field where nine neighbours each get a jittered feature point and a radius generated by a dot of a cosine against a detuned swizzled sine of the cell index, so sizes cluster and cells with a negative radius simply hold none. The union is taken over coverage rather than over the signed distance the listing maxes, which is what keeps every disc whole instead of letting a neighbour bite a straight edge out of it, and the signed distance is scaled hard for a rim of about a pixel. An optional bead mode reads the winning cell as a hemisphere and lights it.",
@@ -182,6 +224,7 @@ export const orbRegistry: OrbRegistryEntry[] = [
   },
   {
     slug: "shdr-20",
+    credit: XORDEV_CREDIT,
     title: "SHDR-20",
     description:
       "A water film rushing down the ball, fountain-style: vertically squashed cos-octave turbulence scrolls at nine times the clock for the fall rush, a foam blend keeps only a third of the displacement, and the original's sigmoid cliff face is swapped for the sphere's own shell with a traveling ripple.",
@@ -200,6 +243,7 @@ export const orbRegistry: OrbRegistryEntry[] = [
   },
   {
     slug: "shdr-22",
+    credit: XORDEV_CREDIT,
     title: "SHDR-22",
     description:
       "Field lines swirling around the ball about a slowly wandering axis: an exact 90-degree Rodrigues rotation forks into a clean streak field and a cell-quantized turbulent one, their product drawn as density, with the march itself colour-coded — red cores, green by step, blue by depth.",
@@ -227,6 +271,7 @@ export const orbRegistry: OrbRegistryEntry[] = [
   },
   {
     slug: "shdr-25",
+    credit: XORDEV_CREDIT,
     title: "SHDR-25",
     description:
       "The folds of a warped field, drawn by their own steepness: nothing here draws a shape — it measures how fast a rippled field changes from one pixel to the next, so where eight octaves of warp have folded the plane onto itself the field races and those folds come out as bright filigree. The octave transform is an exact similarity hidden in integers, a rotation through the 3-4-5 angle times a scale of ten ninths, and because fwidth needs a WebGL 1 extension that cannot follow the prelude the derivative is taken by finite differences instead — three evaluations of the chain, and truer than the built-in's per-quad constant.",
@@ -236,6 +281,7 @@ export const orbRegistry: OrbRegistryEntry[] = [
   },
   {
     slug: "shdr-26",
+    credit: XORDEV_CREDIT,
     title: "SHDR-26",
     description:
       "A crazed web of coloured threads knotted to a cell grid: a nine-octave feedback warp carrying a lattice pole term, so the field flows through cell interiors and tears itself around every cell corner, banded by an exponential ridge function that draws a thin bright thread every PI over a lit floor. The per-channel phase is a large fraction of a thread that narrow, so each one separates into three coloured filaments running in parallel, and a fourth-power read of the same ridge lays a white-hot core inside them.",
@@ -254,6 +300,7 @@ export const orbRegistry: OrbRegistryEntry[] = [
   },
   {
     slug: "shdr-28",
+    credit: XORDEV_CREDIT,
     title: "SHDR-28",
     description:
       "Nested binary grids shuttering on a tumbling bit-sphere: a twenty-level power-of-two zoom wrapped onto the ball through a stereographic projection, cell edges drawn with an analytic pixel footprint instead of fwidth, and an animated per-cell shutter that lets each grid level occlude the ones beneath.",
@@ -281,6 +328,7 @@ export const orbRegistry: OrbRegistryEntry[] = [
   },
   {
     slug: "shdr-31",
+    credit: XORDEV_CREDIT,
     title: "SHDR-31",
     description:
       "A raymarched SDF shell with volumetric godrays: the space between a sine-warped sphere and a plain one, lit only by light accumulated along each ray as it passes through the hollow.",

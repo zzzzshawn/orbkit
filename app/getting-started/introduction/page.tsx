@@ -19,10 +19,11 @@ export const metadata: Metadata = {
 
 export default function IntroductionPage() {
   const firstSlug = orbRegistry[0]?.slug ?? "shdr-11";
+  const creditedCount = orbRegistry.filter((orb) => orb.credit).length;
 
   return (
     <DocsShell
-      title={`${SITE_NAME} — shader orbs you own`}
+      title={`${SITE_NAME} — shader orbs for agent states`}
       lead={SITE_DESCRIPTION}
       active="/getting-started/introduction"
     >
@@ -63,6 +64,24 @@ export default function IntroductionPage() {
         </p>
         <DocsCode lang="jsonc">{REGISTRY_ALIAS_SNIPPET}</DocsCode>
         <DocsCode lang="bash">{shadcnAddNamespacedCommand(firstSlug)}</DocsCode>
+      </DocsSection>
+
+      <DocsSection heading="Licensing">
+        <p>
+          The runtime and {orbRegistry.length - creditedCount} of the orbs are MIT. The other{" "}
+          {creditedCount} are ported from shaders by{" "}
+          <a
+            href="https://x.com/XorDev"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="theme-link underline underline-offset-4"
+          >
+            @XorDev
+          </a>{" "}
+          with his permission and are for non-commercial use only, with attribution. Each of
+          those files says so in a header comment, the registry marks them with a{" "}
+          <code>credit</code> field, and the orb drawer shows it.
+        </p>
       </DocsSection>
 
       <DocsSection heading="Agent states">
